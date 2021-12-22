@@ -13,5 +13,7 @@ class Operations {
     
     weak var viewDelegate: ViewDelegate?
     
+    // methodes publiques soustration etc..
     
+    // 
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-//Delegate pattern
+//Delegate pattern autre fichier
 protocol ViewDelegate: AnyObject {
     func updateview()
 }
