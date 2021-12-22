@@ -8,7 +8,16 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+//Delegate pattern
+protocol ViewDelegate: AnyObject {
+    func updateview()
+}
+
+class ViewController: UIViewController, ViewDelegate {
+    public func updateview() {
+        
+    }
+    
     @IBOutlet weak var textView: UITextView!
     @IBOutlet var numberButtons: [UIButton]!
     
@@ -37,8 +46,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        operations.viewDelegate = self
     }
     
+    let operations = Operations()
     
     // View actions
     @IBAction func tappedNumberButton(_ sender: UIButton) {
@@ -57,9 +68,7 @@ class ViewController: UIViewController {
         if canAddOperator {
             textView.text.append(" + ")
         } else {
-            let alertVC = UIAlertController(title: "Zéro!", message: "Un operateur est déja mis !", preferredStyle: .alert)
-            alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            self.present(alertVC, animated: true, completion: nil)
+            warningMessage("Un operateur est déja mis !")
         }
     }
     
@@ -67,9 +76,7 @@ class ViewController: UIViewController {
         if canAddOperator {
             textView.text.append(" - ")
         } else {
-            let alertVC = UIAlertController(title: "Zéro!", message: "Un operateur est déja mis !", preferredStyle: .alert)
-            alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            self.present(alertVC, animated: true, completion: nil)
+            warningMessage("Un operateur est déja mis !")
         }
     }
 
@@ -80,7 +87,7 @@ class ViewController: UIViewController {
             return self.present(alertVC, animated: true, completion: nil)
         }
         
-        guard expressionHaveEnoughElement else {
+        guard expressionHaveEnoughElement else { 
             let alertVC = UIAlertController(title: "Zéro!", message: "Démarrez un nouveau calcul !", preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             return self.present(alertVC, animated: true, completion: nil)
@@ -107,6 +114,13 @@ class ViewController: UIViewController {
         }
         
         textView.text.append(" = \(operationsToReduce.first!)")
+    }
+    
+    
+    private func warningMessage(_ message: String){
+        let warningMessage = UIAlertController(title: "Zéro!", message: message, preferredStyle: .alert)
+        warningMessage.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        return self.present(warningMessage, animated: true, completion: nil)
     }
 
 }
