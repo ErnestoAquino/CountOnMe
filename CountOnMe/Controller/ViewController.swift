@@ -20,6 +20,7 @@ class ViewController: UIViewController, ViewDelegate {
     
     @IBOutlet weak var textView: UITextView!
     @IBOutlet var numberButtons: [UIButton]!
+    @IBOutlet var operatorsButtons: [UIButton]!
     
     var elements: [String] {
         return textView.text.split(separator: " ").map { "\($0)" }
@@ -47,6 +48,13 @@ class ViewController: UIViewController, ViewDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         operations.viewDelegate = self
+        //UI
+        for button in numberButtons{
+            button.round()
+        }
+        for button in operatorsButtons{
+            button.round()
+        }
     }
     
     let operations = Operations()
