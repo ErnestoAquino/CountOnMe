@@ -33,7 +33,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Raa-av-x4n" secondAttribute="height" multiplier="1:1" id="kU5-Ff-wgz"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="26"/>
                                                 <state key="normal" title="1">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -47,7 +47,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="jd7-ld-hSU" secondAttribute="height" multiplier="1:1" id="DYH-lO-FL5"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="26"/>
                                                 <state key="normal" title="2">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -61,7 +61,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="UDN-zf-T0y" secondAttribute="height" multiplier="1:1" id="LKN-RC-omD"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="26"/>
                                                 <state key="normal" title="3">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -75,7 +75,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="DQU-P5-55X" secondAttribute="height" multiplier="1:1" id="d4X-0g-HJy"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="42"/>
                                                 <state key="normal" title="+">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -94,7 +94,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="tMJ-tH-k5u" secondAttribute="height" multiplier="1:1" id="7DD-dS-nwX"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="26"/>
                                                 <state key="normal" title="4">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -108,7 +108,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="lad-SR-mqj" secondAttribute="height" multiplier="1:1" id="qpY-tG-YT4"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="26"/>
                                                 <state key="normal" title="5">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -122,7 +122,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="S66-ub-JAX" secondAttribute="height" multiplier="1:1" id="6SX-lh-axQ"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="26"/>
                                                 <state key="normal" title="6">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -136,7 +136,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="3zr-HC-0N9" secondAttribute="height" multiplier="1:1" id="2Ja-8B-ojr"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="42"/>
                                                 <state key="normal" title="-">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -155,7 +155,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="W04-n1-Wen" secondAttribute="height" multiplier="1:1" id="vhz-2d-Hac"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="26"/>
                                                 <state key="normal" title="7">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -169,7 +169,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="EPx-3X-zTa" secondAttribute="height" multiplier="1:1" id="7L0-GB-yTn"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="26"/>
                                                 <state key="normal" title="8">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -183,7 +183,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Hkr-13-i1X" secondAttribute="height" multiplier="1:1" id="FnG-FZ-acy"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="26"/>
                                                 <state key="normal" title="9">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -197,8 +197,8 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="6Eb-w1-vd4" secondAttribute="height" multiplier="1:1" id="dHL-Qq-kkp"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
-                                                <state key="normal" title="X">
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="42"/>
+                                                <state key="normal" title="×">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                             </button>
@@ -213,7 +213,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="noG-kk-l2y" secondAttribute="height" multiplier="1:1" id="RI2-XM-GrT"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="31"/>
                                                 <state key="normal" title="AC">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -224,7 +224,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="YD6-ul-r3f" secondAttribute="height" multiplier="1:1" id="bPE-gg-Gof"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="26"/>
                                                 <state key="normal" title="0">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -238,7 +238,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="qMj-Of-bCU" secondAttribute="height" multiplier="1:1" id="Ti9-5H-2xz"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="42"/>
                                                 <state key="normal" title="=">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -252,7 +252,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="tbr-be-AU1" secondAttribute="height" multiplier="1:1" id="8Lb-IE-fST"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="42"/>
                                                 <state key="normal" title="÷">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -298,6 +298,12 @@
                         <outletCollection property="numberButtons" destination="Raa-av-x4n" collectionClass="NSMutableArray" id="P52-Zx-bMS"/>
                         <outletCollection property="numberButtons" destination="jd7-ld-hSU" collectionClass="NSMutableArray" id="U3Z-si-yYe"/>
                         <outletCollection property="numberButtons" destination="UDN-zf-T0y" collectionClass="NSMutableArray" id="EsS-4s-VvX"/>
+                        <outletCollection property="operatorsButtons" destination="DQU-P5-55X" collectionClass="NSMutableArray" id="oVl-Ox-Fe0"/>
+                        <outletCollection property="operatorsButtons" destination="3zr-HC-0N9" collectionClass="NSMutableArray" id="wJr-kM-OkK"/>
+                        <outletCollection property="operatorsButtons" destination="6Eb-w1-vd4" collectionClass="NSMutableArray" id="Wpm-B1-wWg"/>
+                        <outletCollection property="operatorsButtons" destination="tbr-be-AU1" collectionClass="NSMutableArray" id="mF4-xH-Czi"/>
+                        <outletCollection property="operatorsButtons" destination="qMj-Of-bCU" collectionClass="NSMutableArray" id="Ca5-pZ-Zw6"/>
+                        <outletCollection property="operatorsButtons" destination="noG-kk-l2y" collectionClass="NSMutableArray" id="3Dw-y0-gzf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7XP-3c-sJZ" sceneMemberID="firstResponder"/>
