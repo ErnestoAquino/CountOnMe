@@ -22,28 +22,33 @@ class ViewController: UIViewController, ViewDelegate {
     @IBOutlet var numberButtons: [UIButton]!
     @IBOutlet var operatorsButtons: [UIButton]!
     
-    var elements: [String] {
+    // MARK: - Variables
+    private var elements: [String] {
         return textView.text.split(separator: " ").map { "\($0)" }
     }
     
     // Error check computed variables
-    var expressionIsCorrect: Bool {
+    private var expressionIsCorrect: Bool {
         return elements.last != "+" && elements.last != "-"
     }
     
-    var expressionHaveEnoughElement: Bool {
+    private var expressionHaveEnoughElement: Bool {
         return elements.count >= 3
     }
     
-    var canAddOperator: Bool {
+    private var canAddOperator: Bool {
         return elements.last != "+" && elements.last != "-"
     }
     
-    var expressionHaveResult: Bool {
+    private var expressionHaveResult: Bool {
         return textView.text.firstIndex(of: "=") != nil
     }
     
-    // View Life cycles
+    // MARK: - Constants
+    
+    let operations = Operations()
+    
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -57,9 +62,7 @@ class ViewController: UIViewController, ViewDelegate {
         }
     }
     
-    let operations = Operations()
-    
-    // View actions
+    //MARK: - View actions
     @IBAction func tappedNumberButton(_ sender: UIButton) {
         guard let numberText = sender.title(for: .normal) else {
             return
