@@ -6,4 +6,12 @@
 //  Copyright © 2021 Vincent Saluzzo. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+extension UIButton {
+    // round edge
+    func round(){
+        layer.cornerRadius = bounds.height/2
+        clipsToBounds = true
+    }
+}
