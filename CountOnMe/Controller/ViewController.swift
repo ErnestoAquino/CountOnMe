@@ -63,6 +63,7 @@ class ViewController: UIViewController, ViewDelegate {
     }
     
     //MARK: - View actions
+    
     @IBAction func tappedNumberButton(_ sender: UIButton) {
         guard let numberText = sender.title(for: .normal) else {
             return
@@ -73,6 +74,10 @@ class ViewController: UIViewController, ViewDelegate {
         }
         
         textView.text.append(numberText)
+    }
+    
+    @IBAction func tappedACButton(_ sender: UIButton) {
+        textView.text = ""
     }
     
     @IBAction func tappedAdditionButton(_ sender: UIButton) {
