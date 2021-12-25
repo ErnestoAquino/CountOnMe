@@ -77,23 +77,23 @@ class ViewController: UIViewController, ViewDelegate {
     }
     
     @IBAction func tappedACButton(_ sender: UIButton) {
-        textView.text = ""
+        clear()
     }
     
     @IBAction func tappedAdditionButton(_ sender: UIButton) {
-        if canAddOperator {
-            textView.text.append(" + ")
-        } else {
-            warningMessage("Un operateur est déja mis !")
-        }
+        addition()
     }
     
     @IBAction func tappedSubstractionButton(_ sender: UIButton) {
-        if canAddOperator {
-            textView.text.append(" - ")
-        } else {
-            warningMessage("Un operateur est déja mis !")
-        }
+       subtraction()
+    }
+    
+    @IBAction func tappedMultiplicationButton(_ sender: UIButton) {
+        multiplication()
+    }
+    
+    @IBAction func tappedDivisionButton(_ sender: UIButton) {
+        division()
     }
 
     @IBAction func tappedEqualButton(_ sender: UIButton) {
@@ -122,6 +122,8 @@ class ViewController: UIViewController, ViewDelegate {
             switch operand {
             case "+": result = left + right
             case "-": result = left - right
+            case "÷": result = left / right
+            case "×": result = left * right
             default: fatalError("Unknown operator !")
             }
             
@@ -137,6 +139,43 @@ class ViewController: UIViewController, ViewDelegate {
         let warningMessage = UIAlertController(title: "Zéro!", message: message, preferredStyle: .alert)
         warningMessage.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         return self.present(warningMessage, animated: true, completion: nil)
+    }
+    
+    //clean the screen 
+    private func clear() {
+        textView.text = ""
+    }
+    
+    private func addition(){
+        if canAddOperator {
+            textView.text.append(" + ")
+        } else {
+            warningMessage("Un operateur est déja mis !")
+        }
+    }
+    
+    private func subtraction() {
+        if canAddOperator {
+            textView.text.append(" - ")
+        } else {
+            warningMessage("Un operateur est déja mis !")
+        }
+    }
+    
+    private func multiplication() {
+        if canAddOperator {
+            textView.text.append(" × ")
+        } else {
+            warningMessage("Un operateur est déja mis !")
+        }
+    }
+    
+    private func division() {
+        if canAddOperator {
+            textView.text.append(" ÷ ")
+        } else {
+            warningMessage("Un operateur est déja mis !")
+        }
     }
 
 }
