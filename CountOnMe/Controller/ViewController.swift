@@ -97,17 +97,9 @@ class ViewController: UIViewController, ViewDelegate {
     }
 
     @IBAction func tappedEqualButton(_ sender: UIButton) {
-        guard expressionIsCorrect else {
-            let alertVC = UIAlertController(title: "Zéro!", message: "Entrez une expression correcte !", preferredStyle: .alert)
-            alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            return self.present(alertVC, animated: true, completion: nil)
-        }
+        guard expressionIsCorrect else { warningMessage("Entrez une expression correcte !"); return}
         
-        guard expressionHaveEnoughElement else { 
-            let alertVC = UIAlertController(title: "Zéro!", message: "Démarrez un nouveau calcul !", preferredStyle: .alert)
-            alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            return self.present(alertVC, animated: true, completion: nil)
-        }
+        guard expressionHaveEnoughElement else { warningMessage("Démarrez un nouveau calcul !"); return}
         
         // Create local copy of operations
         var operationsToReduce = elements
