@@ -11,9 +11,8 @@ import Foundation
 
 class Operations {
     
-    public private(set) var currenteValue: Int = 15
-    
     weak var viewDelegate: ViewDelegate?
+    let message = "Un operateur est déjà mis !"
     
     func clear() {
         viewDelegate?.clear()
@@ -22,33 +21,33 @@ class Operations {
     
     func addition(){
         if viewDelegate!.canAddOperator {
-            viewDelegate?.addition()
+            viewDelegate?.addMathematicalOperator(" + ")
         } else {
-            viewDelegate?.warningMessage("Un operateur est déja mis !")
+            viewDelegate?.warningMessage(message)
         }
     }
     
     func subtraction(){
         if viewDelegate!.canAddOperator {
-            viewDelegate?.subtraction()
+            viewDelegate?.addMathematicalOperator(" - ")
         } else {
-            viewDelegate?.warningMessage("Un operateur est déja mis!")
+            viewDelegate?.warningMessage(message)
         }
     }
     
     func multiplication(){
         if viewDelegate!.canAddOperator {
-            viewDelegate?.multiplication()
+            viewDelegate?.addMathematicalOperator(" × ")
         } else {
-            viewDelegate?.warningMessage("Un operateur est déja mis")
+            viewDelegate?.warningMessage(message)
         }
     }
     
     func division(){
         if viewDelegate!.canAddOperator {
-            viewDelegate?.division()
+            viewDelegate?.addMathematicalOperator(" ÷ ")
         } else {
-            viewDelegate?.warningMessage("Un operateur est déja mis")
+            viewDelegate?.warningMessage(message)
         }
     }
     
@@ -78,7 +77,6 @@ class Operations {
             operationsToReduce = Array(operationsToReduce.dropFirst(3))
             operationsToReduce.insert("\(result)", at: 0)
         }
-        
         viewDelegate?.addResultat(operationsToReduce)
     }
 
