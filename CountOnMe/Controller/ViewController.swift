@@ -10,37 +10,48 @@ import UIKit
 
 //Delegate pattern autre fichier
 protocol ViewDelegate: AnyObject {
-    func updateview()
+    func clear()
+    func addition()
+    func subtraction()
+    func multiplication()
+    func division()
+    func warningMessage(_ message: String)
+    func addResultat(_ operationsToReduce: [String])
+    
+    var canAddOperator: Bool {get}
+    var expressionIsCorrect: Bool {get}
+    var expressionHaveEnoughElement: Bool {get}
+    var expressionHaveResult: Bool {get}
+    var elements: [String] {get}
 }
 
 class ViewController: UIViewController, ViewDelegate {
-    public func updateview() {
-        
-    }
-    
+      
     @IBOutlet weak var textView: UITextView!
     @IBOutlet var numberButtons: [UIButton]!
     @IBOutlet var operatorsButtons: [UIButton]!
     
     // MARK: - Variables
-    private var elements: [String] {
+    internal var elements: [String] {
         return textView.text.split(separator: " ").map { "\($0)" }
     }
     
     // Error check computed variables
-    private var expressionIsCorrect: Bool {
+    internal var expressionIsCorrect: Bool {
         return elements.last != "+" && elements.last != "-"
+            && elements.last != "×" && elements.last != "÷"
     }
     
-    private var expressionHaveEnoughElement: Bool {
+    internal var expressionHaveEnoughElement: Bool {
         return elements.count >= 3
     }
     
-    private var canAddOperator: Bool {
+    internal var canAddOperator: Bool {
         return elements.last != "+" && elements.last != "-"
+            && elements.last != "×" && elements.last != "÷"
     }
-    
-    private var expressionHaveResult: Bool {
+
+    internal var expressionHaveResult: Bool {
         return textView.text.firstIndex(of: "=") != nil
     }
     
@@ -77,97 +88,118 @@ class ViewController: UIViewController, ViewDelegate {
     }
     
     @IBAction func tappedACButton(_ sender: UIButton) {
-        clear()
+//        clear()
+        operations.clear()
     }
     
     @IBAction func tappedAdditionButton(_ sender: UIButton) {
-        addition()
+        operations.addition()
     }
     
     @IBAction func tappedSubstractionButton(_ sender: UIButton) {
-       subtraction()
+        operations.subtraction()
     }
     
     @IBAction func tappedMultiplicationButton(_ sender: UIButton) {
-        multiplication()
+        operations.multiplication()
     }
     
     @IBAction func tappedDivisionButton(_ sender: UIButton) {
-        division()
+        operations.division()
     }
 
     @IBAction func tappedEqualButton(_ sender: UIButton) {
-        guard expressionIsCorrect else { warningMessage("Entrez une expression correcte !"); return}
-        
-        guard expressionHaveEnoughElement else { warningMessage("Démarrez un nouveau calcul !"); return}
-        
-        // Create local copy of operations
-        var operationsToReduce = elements
-        
-        // Iterate over operations while an operand still here
-        while operationsToReduce.count > 1 {
-            let left = Int(operationsToReduce[0])!
-            let operand = operationsToReduce[1]
-            let right = Int(operationsToReduce[2])!
-            
-            let result: Int
-            switch operand {
-            case "+": result = left + right
-            case "-": result = left - right
-            case "÷": result = left / right
-            case "×": result = left * right
-            default: fatalError("Unknown operator !")
-            }
-            
-            operationsToReduce = Array(operationsToReduce.dropFirst(3))
-            operationsToReduce.insert("\(result)", at: 0)
-        }
-        
-        textView.text.append(" = \(operationsToReduce.first!)")
+//        guard expressionIsCorrect else { warningMessage("Entrez une expression correcte !"); return}
+//
+//        guard expressionHaveEnoughElement else { warningMessage("Démarrez un nouveau calcul !"); return}
+//
+//        // Create local copy of operations
+//        var operationsToReduce = elements
+//
+//        // Iterate over operations while an operand still here
+//        while operationsToReduce.count > 1 {
+//            let left = Int(operationsToReduce[0])!
+//            let operand = operationsToReduce[1]
+//            let right = Int(operationsToReduce[2])!
+//
+//            let result: Int
+//            switch operand {
+//            case "+": result = left + right
+//            case "-": result = left - right
+//            case "÷": result = left / right
+//            case "×": result = left * right
+//            default: fatalError("Unknown operator !")
+//            }
+//
+//            operationsToReduce = Array(operationsToReduce.dropFirst(3))
+//            operationsToReduce.insert("\(result)", at: 0)
+//        }
+//
+//        textView.text.append(" = \(operationsToReduce.first!)")
+        operations.equalButton()
     }
     
-    
-    private func warningMessage(_ message: String){
+    //MARK: - Functions
+    internal func warningMessage(_ message: String){
         let warningMessage = UIAlertController(title: "Zéro!", message: message, preferredStyle: .alert)
         warningMessage.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         return self.present(warningMessage, animated: true, completion: nil)
     }
     
     //clean the screen 
-    private func clear() {
+     internal func clear() {
         textView.text = ""
     }
     
-    private func addition(){
-        if canAddOperator {
+//    internal func addition(){
+//        if canAddOperator {
+//            textView.text.append(" + ")
+//        } else {
+//            warningMessage("Un operateur est déja mis !")
+//        }
+//    }
+    
+    internal func addition(){
             textView.text.append(" + ")
-        } else {
-            warningMessage("Un operateur est déja mis !")
-        }
     }
     
-    private func subtraction() {
-        if canAddOperator {
-            textView.text.append(" - ")
-        } else {
-            warningMessage("Un operateur est déja mis !")
-        }
+//    internal func subtraction() {
+//        if canAddOperator {
+//            textView.text.append(" - ")
+//        } else {
+//            warningMessage("Un operateur est déja mis !")
+//        }
+//    }
+    
+    internal func subtraction(){
+        textView.text.append(" - ")
     }
     
-    private func multiplication() {
-        if canAddOperator {
-            textView.text.append(" × ")
-        } else {
-            warningMessage("Un operateur est déja mis !")
-        }
+//    private func multiplication() {
+//        if canAddOperator {
+//            textView.text.append(" × ")
+//        } else {
+//            warningMessage("Un operateur est déja mis !")
+//        }
+//    }
+    internal func multiplication() {
+        textView.text.append(" × ")
     }
     
-    private func division() {
-        if canAddOperator {
-            textView.text.append(" ÷ ")
-        } else {
-            warningMessage("Un operateur est déja mis !")
-        }
+//    private func division() {
+//        if canAddOperator {
+//            textView.text.append(" ÷ ")
+//        } else {
+//            warningMessage("Un operateur est déja mis !")
+//        }
+//    }
+    
+    internal func division() {
+        textView.text.append(" ÷ ")
+    }
+    
+    internal func addResultat(_ operationsToReduce: [String]) {
+        textView.text.append(" = \(operationsToReduce.first!)")
     }
 
 }
