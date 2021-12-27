@@ -11,12 +11,10 @@ import UIKit
 //Delegate pattern autre fichier
 protocol ViewDelegate: AnyObject {
     func clear()
-    func addition()
-    func subtraction()
-    func multiplication()
-    func division()
     func warningMessage(_ message: String)
     func addResultat(_ operationsToReduce: [String])
+    func addMathematicalOperator(_ mathematicalOperator: String)
+    
     
     var canAddOperator: Bool {get}
     var expressionIsCorrect: Bool {get}
@@ -62,14 +60,13 @@ class ViewController: UIViewController, ViewDelegate {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         operations.viewDelegate = self
         //UI
-        for button in numberButtons{
-            button.round()
+        numberButtons.forEach{
+            $0.round()
         }
-        for button in operatorsButtons{
-            button.round()
+        operatorsButtons.forEach{
+            $0.round()
         }
     }
     
@@ -109,33 +106,6 @@ class ViewController: UIViewController, ViewDelegate {
     }
 
     @IBAction func tappedEqualButton(_ sender: UIButton) {
-//        guard expressionIsCorrect else { warningMessage("Entrez une expression correcte !"); return}
-//
-//        guard expressionHaveEnoughElement else { warningMessage("Démarrez un nouveau calcul !"); return}
-//
-//        // Create local copy of operations
-//        var operationsToReduce = elements
-//
-//        // Iterate over operations while an operand still here
-//        while operationsToReduce.count > 1 {
-//            let left = Int(operationsToReduce[0])!
-//            let operand = operationsToReduce[1]
-//            let right = Int(operationsToReduce[2])!
-//
-//            let result: Int
-//            switch operand {
-//            case "+": result = left + right
-//            case "-": result = left - right
-//            case "÷": result = left / right
-//            case "×": result = left * right
-//            default: fatalError("Unknown operator !")
-//            }
-//
-//            operationsToReduce = Array(operationsToReduce.dropFirst(3))
-//            operationsToReduce.insert("\(result)", at: 0)
-//        }
-//
-//        textView.text.append(" = \(operationsToReduce.first!)")
         operations.equalButton()
     }
     
@@ -151,56 +121,11 @@ class ViewController: UIViewController, ViewDelegate {
         textView.text = ""
     }
     
-//    internal func addition(){
-//        if canAddOperator {
-//            textView.text.append(" + ")
-//        } else {
-//            warningMessage("Un operateur est déja mis !")
-//        }
-//    }
-    
-    internal func addition(){
-            textView.text.append(" + ")
-    }
-    
-//    internal func subtraction() {
-//        if canAddOperator {
-//            textView.text.append(" - ")
-//        } else {
-//            warningMessage("Un operateur est déja mis !")
-//        }
-//    }
-    
-    internal func subtraction(){
-        textView.text.append(" - ")
-    }
-    
-//    private func multiplication() {
-//        if canAddOperator {
-//            textView.text.append(" × ")
-//        } else {
-//            warningMessage("Un operateur est déja mis !")
-//        }
-//    }
-    internal func multiplication() {
-        textView.text.append(" × ")
-    }
-    
-//    private func division() {
-//        if canAddOperator {
-//            textView.text.append(" ÷ ")
-//        } else {
-//            warningMessage("Un operateur est déja mis !")
-//        }
-//    }
-    
-    internal func division() {
-        textView.text.append(" ÷ ")
-    }
-    
     internal func addResultat(_ operationsToReduce: [String]) {
         textView.text.append(" = \(operationsToReduce.first!)")
     }
-
+    
+    internal func addMathematicalOperator(_ mathematicalOperator: String){
+        textView.text.append(mathematicalOperator)
+    }
 }
-
