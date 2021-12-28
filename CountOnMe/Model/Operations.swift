@@ -79,5 +79,4 @@ class Operations {
         }
         viewDelegate?.addResultat(operationsToReduce)
     }
-
 }
