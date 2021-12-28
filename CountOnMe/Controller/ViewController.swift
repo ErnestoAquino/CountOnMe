@@ -15,7 +15,6 @@ protocol ViewDelegate: AnyObject {
     func addResultat(_ operationsToReduce: [String])
     func addMathematicalOperator(_ mathematicalOperator: String)
     
-    
     var canAddOperator: Bool {get}
     var expressionIsCorrect: Bool {get}
     var expressionHaveEnoughElement: Bool {get}
@@ -85,12 +84,11 @@ class ViewController: UIViewController, ViewDelegate {
     }
     
     @IBAction func tappedACButton(_ sender: UIButton) {
-//        clear()
         operations.clear()
     }
     
     @IBAction func tappedAdditionButton(_ sender: UIButton) {
-        operations.addition()
+        self.operations.addition()
     }
     
     @IBAction func tappedSubstractionButton(_ sender: UIButton) {
