@@ -7,3 +7,16 @@
 //
 
 import Foundation
+
+protocol ViewDelegate: AnyObject {
+    func clear()
+    func warningMessage(_ message: String)
+    func addResultat(_ operationsToReduce: [String])
+    func addMathematicalOperator(_ mathematicalOperator: String)
+    
+    var canAddOperator: Bool {get}
+    var expressionIsCorrect: Bool {get}
+    var expressionHaveEnoughElement: Bool {get}
+    var expressionHaveResult: Bool {get}
+    var elements: [String] {get}
+}
