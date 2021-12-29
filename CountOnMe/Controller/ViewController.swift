@@ -106,6 +106,8 @@ class ViewController: UIViewController, ViewDelegate {
     }
     
     internal func addResultat(_ operationsToReduce: [String]) {
+        // al mdelo ->
+        
         textView.text.append(" = \(operationsToReduce.first!)")
     }
     
