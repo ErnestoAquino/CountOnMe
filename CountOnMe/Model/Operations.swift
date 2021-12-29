@@ -48,7 +48,10 @@ class Operations {
     }
     
     func equalButton() {
-        guard viewDelegate!.expressionIsCorrect else {
+        
+        //pas de ! dans delegate -> cast
+        guard let delegate = viewDelegate else {return}
+        guard delegate.expressionIsCorrect else {
             viewDelegate?.warningMessage("Entrez une expression correcte !"); return}
         guard viewDelegate!.expressionHaveEnoughElement else {
             viewDelegate?.warningMessage("Démarrez un nuveau calcul !"); return}
