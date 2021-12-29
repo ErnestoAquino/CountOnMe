@@ -14,10 +14,6 @@ class Operations {
     weak var viewDelegate: ViewDelegate?
     let message = "Un operateur est déjà mis !"
     
-    func clear() {
-        viewDelegate?.clear()
-        print("im here")
-    }
     
     func addition(){
         if viewDelegate!.canAddOperator {
@@ -64,6 +60,11 @@ class Operations {
             let left = Int(operationsToReduce[0])!
             let operand = operationsToReduce[1]
             let right = Int(operationsToReduce[2])!
+            
+            if operand == "÷" && right == 0 {
+                viewDelegate?.warningMessage("You cannot divide by 0")
+                return
+            }
             
             let result: Int
             switch operand {

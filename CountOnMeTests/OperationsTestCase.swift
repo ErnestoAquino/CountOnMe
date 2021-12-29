@@ -7,7 +7,16 @@
 //
 
 import XCTest
+@testable import CountOnMe
 
 class OperationsTestCase: XCTestCase {
+    
+//    func testGivenAnString_WhenClear_TheStringShoudBeHasNothing() {
+//        weak var viewDelegate: ViewDelegate?
+//        let operations = Operations()
+//
+//
+//
+//    }
 
 }

@@ -9,7 +9,6 @@
 import Foundation
 
 protocol ViewDelegate: AnyObject {
-    func clear()
     func warningMessage(_ message: String)
     func addResultat(_ operationsToReduce: [String])
     func addMathematicalOperator(_ mathematicalOperator: String)

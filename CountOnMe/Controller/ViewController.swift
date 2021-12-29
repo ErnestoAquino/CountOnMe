@@ -70,11 +70,11 @@ class ViewController: UIViewController, ViewDelegate {
     }
     
     @IBAction func tappedACButton(_ sender: UIButton) {
-        operations.clear()
+       clear()
     }
     
     @IBAction func tappedAdditionButton(_ sender: UIButton) {
-        self.operations.addition()
+        operations.addition()
     }
     
     @IBAction func tappedSubstractionButton(_ sender: UIButton) {
