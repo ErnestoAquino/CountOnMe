@@ -12,6 +12,8 @@ import Foundation
 class Operations {
     
     weak var viewDelegate: ViewDelegate?
+    
+    
     let message = "Un operateur est déjà mis !"
     
     
