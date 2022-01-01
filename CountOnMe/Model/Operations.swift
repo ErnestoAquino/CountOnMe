@@ -11,12 +11,31 @@ import Foundation
 
 class Operations {
     
+    // MARK: - Variables
     weak var viewDelegate: ViewDelegate?
+    var textWhitData: [String] {
+        viewDelegate!.elements
+    }
     
+    private var expressionIsCorrect: Bool {
+        return textWhitData.last != "+" && textWhitData.last != "-"
+            && textWhitData.last != "×" && textWhitData.last != "÷"
+    }
     
+    private var expressionHaveEnoughElement: Bool {
+        return textWhitData.count >= 3
+    }
+    
+    private var canAddOperator: Bool {
+        return textWhitData.last != "+" && textWhitData.last != "-"
+            && textWhitData.last != "×" && textWhitData.last != "÷"
+    }
+    
+    // MARK: - Constants
     let message = "Un operateur est déjà mis !"
+  
     
-    
+    //MARK: - Functions
     func addition(){
         if viewDelegate!.canAddOperator {
             viewDelegate?.addMathematicalOperator(" + ")
@@ -53,12 +72,12 @@ class Operations {
         
         //pas de ! dans delegate -> cast
         guard let delegate = viewDelegate else {return}
-        guard delegate.expressionIsCorrect else {
-            viewDelegate?.warningMessage("Entrez une expression correcte !"); return}
-        guard viewDelegate!.expressionHaveEnoughElement else {
-            viewDelegate?.warningMessage("Démarrez un nuveau calcul !"); return}
+        guard expressionIsCorrect else {
+            delegate.warningMessage("Entrez une expression correcte !"); return}
+        guard expressionHaveEnoughElement else {
+            delegate.warningMessage("Démarrez un nuveau calcul !"); return}
         
-        var operationsToReduce = viewDelegate!.elements
+        var operationsToReduce = delegate.elements
         
         // Iterate over operations while an operand still here
         while operationsToReduce.count > 1 {
@@ -67,7 +86,7 @@ class Operations {
             let right = Int(operationsToReduce[2])!
             
             if operand == "÷" && right == 0 {
-                viewDelegate?.warningMessage("You cannot divide by 0")
+                delegate.warningMessage("You cannot divide by 0")
                 return
             }
             
@@ -83,6 +102,6 @@ class Operations {
             operationsToReduce = Array(operationsToReduce.dropFirst(3))
             operationsToReduce.insert("\(result)", at: 0)
         }
-        viewDelegate?.addResultat(operationsToReduce)
+        delegate.addResultat(" = \(operationsToReduce.first!)")
     }
 }
