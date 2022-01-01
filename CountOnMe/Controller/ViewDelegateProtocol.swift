@@ -10,7 +10,7 @@ import Foundation
 
 protocol ViewDelegate: AnyObject {
     func warningMessage(_ message: String)
-    func addResultat(_ operationsToReduce: [String])
+    func addResultat(_ resultat: String)
     func addMathematicalOperator(_ mathematicalOperator: String)
     
     var canAddOperator: Bool {get}

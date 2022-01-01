@@ -19,24 +19,26 @@ class ViewController: UIViewController, ViewDelegate {
         return textView.text.split(separator: " ").map { "\($0)" }
     }
     
+    internal var expressionHaveResult: Bool {
+        return textView.text.firstIndex(of: "=") != nil
+    }
+    
     // Error check computed variables
     internal var expressionIsCorrect: Bool {
         return elements.last != "+" && elements.last != "-"
             && elements.last != "×" && elements.last != "÷"
     }
-    
+
     internal var expressionHaveEnoughElement: Bool {
         return elements.count >= 3
     }
-    
+
     internal var canAddOperator: Bool {
         return elements.last != "+" && elements.last != "-"
             && elements.last != "×" && elements.last != "÷"
     }
 
-    internal var expressionHaveResult: Bool {
-        return textView.text.firstIndex(of: "=") != nil
-    }
+
     
     // MARK: - Constants
     
@@ -61,11 +63,9 @@ class ViewController: UIViewController, ViewDelegate {
         guard let numberText = sender.title(for: .normal) else {
             return
         }
-        
         if expressionHaveResult {
             textView.text = ""
         }
-        
         textView.text.append(numberText)
     }
     
@@ -100,15 +100,12 @@ class ViewController: UIViewController, ViewDelegate {
         return self.present(warningMessage, animated: true, completion: nil)
     }
     
-    //clean the screen 
      internal func clear() {
         textView.text = ""
     }
     
-    internal func addResultat(_ operationsToReduce: [String]) {
-        // al mdelo ->
-        
-        textView.text.append(" = \(operationsToReduce.first!)")
+    internal func addResultat(_ resultat: String) {
+        textView.text.append(resultat)
     }
     
     internal func addMathematicalOperator(_ mathematicalOperator: String){
