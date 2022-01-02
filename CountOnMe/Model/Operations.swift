@@ -14,7 +14,7 @@ class Operations {
     // MARK: - Variables
     weak var viewDelegate: ViewDelegate?
     var textWhitData: [String] {
-        viewDelegate!.elements
+        viewDelegate?.elements ?? ["0, 0"]
     }
     
     private var expressionIsCorrect: Bool {
@@ -37,40 +37,42 @@ class Operations {
     
     //MARK: - Functions
     func addition(){
-        if viewDelegate!.canAddOperator {
-            viewDelegate?.addMathematicalOperator(" + ")
+        guard let delegate = viewDelegate else {return}
+        if canAddOperator {
+            delegate.addMathematicalOperator(" + ")
         } else {
-            viewDelegate?.warningMessage(message)
+            delegate.warningMessage(message)
         }
     }
     
     func subtraction(){
-        if viewDelegate!.canAddOperator {
-            viewDelegate?.addMathematicalOperator(" - ")
+        guard let delegate = viewDelegate else {return}
+        if canAddOperator {
+            delegate.addMathematicalOperator(" - ")
         } else {
-            viewDelegate?.warningMessage(message)
+            delegate.warningMessage(message)
         }
     }
     
     func multiplication(){
-        if viewDelegate!.canAddOperator {
-            viewDelegate?.addMathematicalOperator(" × ")
+        guard let delegate = viewDelegate else {return}
+        if canAddOperator {
+            delegate.addMathematicalOperator(" × ")
         } else {
-            viewDelegate?.warningMessage(message)
+            delegate.warningMessage(message)
         }
     }
     
     func division(){
-        if viewDelegate!.canAddOperator {
-            viewDelegate?.addMathematicalOperator(" ÷ ")
+        guard let delegate = viewDelegate else {return}
+        if canAddOperator {
+            delegate.addMathematicalOperator(" ÷ ")
         } else {
-            viewDelegate?.warningMessage(message)
+            delegate.warningMessage(message)
         }
     }
     
     func equalButton() {
-        
-        //pas de ! dans delegate -> cast
         guard let delegate = viewDelegate else {return}
         guard expressionIsCorrect else {
             delegate.warningMessage("Entrez une expression correcte !"); return}
@@ -104,4 +106,9 @@ class Operations {
         }
         delegate.addResultat(" = \(operationsToReduce.first!)")
     }
+    
+//    func createDelegate() -> ViewDelegate {
+//        guard let delegate = viewDelegate else {}
+//        return delegate
+//    }
 }
