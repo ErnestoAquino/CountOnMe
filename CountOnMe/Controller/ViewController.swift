@@ -48,6 +48,7 @@ class ViewController: UIViewController, ViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         operations.viewDelegate = self
+        clear()
         //UI
         numberButtons.forEach{
             $0.round()
