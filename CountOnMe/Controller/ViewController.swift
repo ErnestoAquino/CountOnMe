@@ -13,33 +13,7 @@ class ViewController: UIViewController, ViewDelegate {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet var numberButtons: [UIButton]!
     @IBOutlet var operatorsButtons: [UIButton]!
-    
-    // MARK: - Variables
-    internal var elements: [String] {
-        return textView.text.split(separator: " ").map { "\($0)" }
-    }
-    
-    internal var expressionHaveResult: Bool {
-        return textView.text.firstIndex(of: "=") != nil
-    }
-    
-    // Error check computed variables
-    internal var expressionIsCorrect: Bool {
-        return elements.last != "+" && elements.last != "-"
-            && elements.last != "×" && elements.last != "÷"
-    }
-
-    internal var expressionHaveEnoughElement: Bool {
-        return elements.count >= 3
-    }
-
-    internal var canAddOperator: Bool {
-        return elements.last != "+" && elements.last != "-"
-            && elements.last != "×" && elements.last != "÷"
-    }
-
-
-    
+        
     // MARK: - Constants
     
     let operations = Operations()
@@ -48,7 +22,7 @@ class ViewController: UIViewController, ViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         operations.viewDelegate = self
-        clear()
+        resetTextviewText()
         //UI
         numberButtons.forEach{
             $0.round()
@@ -61,17 +35,12 @@ class ViewController: UIViewController, ViewDelegate {
     //MARK: - View actions
     
     @IBAction func tappedNumberButton(_ sender: UIButton) {
-        guard let numberText = sender.title(for: .normal) else {
-            return
-        }
-        if expressionHaveResult {
-            textView.text = ""
-        }
-        textView.text.append(numberText)
+        operations.receiveNomberToCalculate(sender)
     }
     
     @IBAction func tappedACButton(_ sender: UIButton) {
-       clear()
+        resetTextviewText()
+        operations.resetStringWithData()
     }
     
     @IBAction func tappedAdditionButton(_ sender: UIButton) {
@@ -101,7 +70,7 @@ class ViewController: UIViewController, ViewDelegate {
         return self.present(warningMessage, animated: true, completion: nil)
     }
     
-     internal func clear() {
+     internal func resetTextviewText() {
         textView.text = ""
     }
     
@@ -112,4 +81,9 @@ class ViewController: UIViewController, ViewDelegate {
     internal func addMathematicalOperator(_ mathematicalOperator: String){
         textView.text.append(mathematicalOperator)
     }
+    
+    internal func addCharacterToTextView (_ char: String) {
+        textView.text.append(char)
+    }
+    
 }

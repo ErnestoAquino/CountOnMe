@@ -7,32 +7,39 @@
 //
 
 import Foundation
+import UIKit
 
 
 class Operations {
     
     // MARK: - Variables
     weak var viewDelegate: ViewDelegate?
-    var textWhitData: [String] {
-        viewDelegate?.elements ?? ["0, 0"]
+    
+    private var stringWithData: String = ""
+    
+    private var testElementos: [String] {
+        return stringWithData.split(separator: " ").map { "\($0)" }
     }
     
-    private var expressionIsCorrect: Bool {
-        return textWhitData.last != "+" && textWhitData.last != "-"
-            && textWhitData.last != "×" && textWhitData.last != "÷"
+    private var testHaveResulta: Bool {
+        return stringWithData.firstIndex(of: "=") != nil
+    }
+
+    private var canAddOperator: Bool {
+        return testElementos.last != "+" && testElementos.last != "-"
+            && testElementos.last != "×" && testElementos.last != "÷"
     }
     
     private var expressionHaveEnoughElement: Bool {
-        return textWhitData.count >= 3
+        return testElementos.count >= 3
     }
     
-    private var canAddOperator: Bool {
-        return textWhitData.last != "+" && textWhitData.last != "-"
-            && textWhitData.last != "×" && textWhitData.last != "÷"
+    private var expressionIsCorrect: Bool {
+        return testElementos.last != "+" && testElementos.last != "-"
+            && testElementos.last != "×" && testElementos.last != "÷"
     }
-    
     // MARK: - Constants
-    let message = "Un operateur est déjà mis !"
+    private let message = "Un operateur est déjà mis !"
   
     
     //MARK: - Functions
@@ -40,6 +47,7 @@ class Operations {
         guard let delegate = viewDelegate else {return}
         if canAddOperator {
             delegate.addMathematicalOperator(" + ")
+            stringWithData.append(" + ")
         } else {
             delegate.warningMessage(message)
         }
@@ -49,6 +57,7 @@ class Operations {
         guard let delegate = viewDelegate else {return}
         if canAddOperator {
             delegate.addMathematicalOperator(" - ")
+            stringWithData.append(" - ")
         } else {
             delegate.warningMessage(message)
         }
@@ -58,6 +67,7 @@ class Operations {
         guard let delegate = viewDelegate else {return}
         if canAddOperator {
             delegate.addMathematicalOperator(" × ")
+            stringWithData.append(" × ")
         } else {
             delegate.warningMessage(message)
         }
@@ -67,9 +77,14 @@ class Operations {
         guard let delegate = viewDelegate else {return}
         if canAddOperator {
             delegate.addMathematicalOperator(" ÷ ")
+            stringWithData.append(" ÷ ")
         } else {
             delegate.warningMessage(message)
         }
+    }
+    
+    func resetStringWithData () {
+        stringWithData = ""
     }
     
     func equalButton() {
@@ -79,7 +94,7 @@ class Operations {
         guard expressionHaveEnoughElement else {
             delegate.warningMessage("Démarrez un nuveau calcul !"); return}
         
-        var operationsToReduce = delegate.elements
+        var operationsToReduce = testElementos
         
         // Iterate over operations while an operand still here
         while operationsToReduce.count > 1 {
@@ -107,8 +122,16 @@ class Operations {
         delegate.addResultat(" = \(operationsToReduce.first!)")
     }
     
-//    func createDelegate() -> ViewDelegate {
-//        guard let delegate = viewDelegate else {}
-//        return delegate
-//    }
+    func receiveNomberToCalculate (_ sender: UIButton){
+        guard let numberText = sender.title(for: .normal) else {return}
+        guard let delegate = viewDelegate else {return}
+        
+        if testHaveResulta {
+            stringWithData = ""
+            delegate.addResultat("")
+        }
+        stringWithData.append(numberText)
+        delegate.addCharacterToTextView(numberText)
+    }
+    
 }
