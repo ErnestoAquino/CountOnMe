@@ -17,7 +17,7 @@ class Operations {
     
     private var stringWithData: String = ""
     
-    private var testElementos: [String] {
+    private var elements: [String] {
         return stringWithData.split(separator: " ").map { "\($0)" }
     }
     
@@ -26,24 +26,24 @@ class Operations {
     }
 
     private var canAddOperator: Bool {
-        return testElementos.last != "+" && testElementos.last != "-"
-            && testElementos.last != "×" && testElementos.last != "÷"
+        return elements.last != "+" && elements.last != "-"
+            && elements.last != "×" && elements.last != "÷"
     }
     
     private var expressionHaveEnoughElement: Bool {
-        return testElementos.count >= 3
+        return elements.count >= 3
     }
     
     private var expressionIsCorrect: Bool {
-        return testElementos.last != "+" && testElementos.last != "-"
-            && testElementos.last != "×" && testElementos.last != "÷"
+        return elements.last != "+" && elements.last != "-"
+            && elements.last != "×" && elements.last != "÷"
     }
     // MARK: - Constants
     private let message = "Un operateur est déjà mis !"
   
     
     //MARK: - Functions
-    func addition(){
+    func addAdditionOperator(){
         guard let delegate = viewDelegate else {return}
         if canAddOperator {
             delegate.addMathematicalOperator(" + ")
@@ -53,7 +53,7 @@ class Operations {
         }
     }
     
-    func subtraction(){
+    func addSubtractionOperator(){
         guard let delegate = viewDelegate else {return}
         if canAddOperator {
             delegate.addMathematicalOperator(" - ")
@@ -63,7 +63,7 @@ class Operations {
         }
     }
     
-    func multiplication(){
+    func addMultiplicationOperator(){
         guard let delegate = viewDelegate else {return}
         if canAddOperator {
             delegate.addMathematicalOperator(" × ")
@@ -73,7 +73,7 @@ class Operations {
         }
     }
     
-    func division(){
+    func addDivisionOperator(){
         guard let delegate = viewDelegate else {return}
         if canAddOperator {
             delegate.addMathematicalOperator(" ÷ ")
@@ -94,7 +94,7 @@ class Operations {
         guard expressionHaveEnoughElement else {
             delegate.warningMessage("Démarrez un nuveau calcul !"); return}
         
-        var operationsToReduce = testElementos
+        var operationsToReduce = elements
         
         // Iterate over operations while an operand still here
         while operationsToReduce.count > 1 {

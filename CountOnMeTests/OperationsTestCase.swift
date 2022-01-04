@@ -19,4 +19,33 @@ class OperationsTestCase: XCTestCase {
 //
 //    }
 
+    
+    func testGivenAnString_WhenTappedAddtionButton_TheOperatorAdditionshouldBeHasAdd(){
+        weak var viewDelgate: ViewDelegate?
+        guard let delegate = viewDelgate else { return }
+        
+        delegate.addMathematicalOperator(" + ")
+        
+        
+    }
 }
+
+
+//internal class Operations {
+//
+//    weak internal var viewDelegate: ViewDelegate?
+//
+//    internal func addAdditionOperator()
+//
+//    internal func addSubtractionOperator()
+//
+//    internal func addMultiplicationOperator()
+//
+//    internal func addDivisionOperator()
+//
+//    internal func resetStringWithData()
+//
+//    internal func equalButton()
+//
+//    internal func receiveNomberToCalculate(_ sender: UIButton)
+//}

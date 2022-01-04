@@ -13,10 +13,4 @@ protocol ViewDelegate: AnyObject {
     func addResultat(_ resultat: String)
     func addMathematicalOperator(_ mathematicalOperator: String)
     func addCharacterToTextView (_ char: String)
-    
-//    var canAddOperator: Bool {get}
-//    var expressionIsCorrect: Bool {get}
-//    var expressionHaveEnoughElement: Bool {get}
-//    var expressionHaveResult: Bool {get}
-//    var elements: [String] {get}
 }

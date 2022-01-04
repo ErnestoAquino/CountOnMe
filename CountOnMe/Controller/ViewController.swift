@@ -44,19 +44,19 @@ class ViewController: UIViewController, ViewDelegate {
     }
     
     @IBAction func tappedAdditionButton(_ sender: UIButton) {
-        operations.addition()
+        operations.addAdditionOperator()
     }
     
     @IBAction func tappedSubstractionButton(_ sender: UIButton) {
-        operations.subtraction()
+        operations.addSubtractionOperator()
     }
     
     @IBAction func tappedMultiplicationButton(_ sender: UIButton) {
-        operations.multiplication()
+        operations.addMultiplicationOperator()
     }
     
     @IBAction func tappedDivisionButton(_ sender: UIButton) {
-        operations.division()
+        operations.addDivisionOperator()
     }
 
     @IBAction func tappedEqualButton(_ sender: UIButton) {
