@@ -15,7 +15,7 @@ class Operations {
     // MARK: - Variables
     weak var viewDelegate: ViewDelegate?
     
-    private var stringWithData: String = ""
+     var stringWithData: String = ""
     
     private var elements: [String] {
         return stringWithData.split(separator: " ").map { "\($0)" }

@@ -9,27 +9,63 @@
 import XCTest
 @testable import CountOnMe
 
-class OperationsTestCase: XCTestCase {
+class OperationsTestCase: XCTestCase, ViewDelegate {
     
-//    func testGivenAnString_WhenClear_TheStringShoudBeHasNothing() {
-//        weak var viewDelegate: ViewDelegate?
-//        let operations = Operations()
-//
-//
-//
-//    }
-
     
-    func testGivenAnString_WhenTappedAddtionButton_TheOperatorAdditionshouldBeHasAdd(){
+    var textView: UITextView!
+    
+    var operations: Operations!
+    weak var viewDelgate: ViewDelegate?
+    
+    override func setUp() {
+        super.setUp()
+        operations = Operations()
+        operations.viewDelegate = self
+    }
+    
+    
+    func testGivenNewMathOperation_WhenPressedAddtionButton_TheOperatorAdditionshouldBeHasAdd(){
+//        weak var viewDelgate: ViewDelegate?
+        guard let delegate = viewDelgate else { return }
+        
+        operations.addAdditionOperator()
+        
+        XCTAssert (delegate.textView.text.contains(" + "))
+    }
+    
+    func testGivenNewMathOperation_WhenPressedSubtractionButton_ThenOperatorSubtractionShouldBeAdd() {
         weak var viewDelgate: ViewDelegate?
         guard let delegate = viewDelgate else { return }
         
-        delegate.addMathematicalOperator(" + ")
+        operations.addSubtractionOperator()
         
+        XCTAssert (delegate.textView.text.contains(" - "))
+    }
+    
+    func testGivenNewMathOperation_WhenPressedMultiplicationButton_TheOperatorMultiplicationShouldBeAdd() {
+        weak var viewDelgate: ViewDelegate?
+        guard let delegate = viewDelgate else { return }
         
+        operations.addMultiplicationOperator()
+        
+        XCTAssert (delegate.textView.text.contains(" × "))
     }
 }
 
+extension OperationsTestCase {
+    func warningMessage(_ message: String) {
+    }
+    
+    func addResultat(_ resultat: String) {
+    }
+    
+    func addMathematicalOperator(_ mathematicalOperator: String) {
+    }
+    
+    func addCharacterToTextView(_ char: String) {
+    }
+    
+}
 
 //internal class Operations {
 //
@@ -49,3 +85,4 @@ class OperationsTestCase: XCTestCase {
 //
 //    internal func receiveNomberToCalculate(_ sender: UIButton)
 //}
+//carry out a new math operation
