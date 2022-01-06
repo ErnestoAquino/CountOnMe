@@ -15,5 +15,5 @@ protocol ViewDelegate: AnyObject {
     func addMathematicalOperator(_ mathematicalOperator: String)
     func addCharacterToTextView (_ char: String)
     
-     var textView: UITextView! { get }
+//     var textView: UITextView! { get }
 }

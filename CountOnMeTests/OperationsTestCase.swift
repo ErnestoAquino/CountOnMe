@@ -9,62 +9,57 @@
 import XCTest
 @testable import CountOnMe
 
-class OperationsTestCase: XCTestCase, ViewDelegate {
-    
-    
-    var textView: UITextView!
-    
+class OperationsTestCase: XCTestCase, ViewDelegate{
     var operations: Operations!
-    weak var viewDelgate: ViewDelegate?
     
     override func setUp() {
         super.setUp()
         operations = Operations()
-        operations.viewDelegate = self
     }
-    
+
+   
     
     func testGivenNewMathOperation_WhenPressedAddtionButton_TheOperatorAdditionshouldBeHasAdd(){
-//        weak var viewDelgate: ViewDelegate?
-        guard let delegate = viewDelgate else { return }
+        operations.stringWithData = ""
         
         operations.addAdditionOperator()
         
-        XCTAssert (delegate.textView.text.contains(" + "))
+        XCTAssert ()
+        
     }
     
     func testGivenNewMathOperation_WhenPressedSubtractionButton_ThenOperatorSubtractionShouldBeAdd() {
-        weak var viewDelgate: ViewDelegate?
-        guard let delegate = viewDelgate else { return }
-        
-        operations.addSubtractionOperator()
-        
-        XCTAssert (delegate.textView.text.contains(" - "))
-    }
+//        weak var viewDelgate: ViewDelegate?
+//        guard let delegate = viewDelgate else { return }
+//
+//        operations.addSubtractionOperator()
+//
+//        XCTAssert (delegate.textView.text.contains(" - "))
+//    }
     
     func testGivenNewMathOperation_WhenPressedMultiplicationButton_TheOperatorMultiplicationShouldBeAdd() {
-        weak var viewDelgate: ViewDelegate?
-        guard let delegate = viewDelgate else { return }
-        
-        operations.addMultiplicationOperator()
-        
-        XCTAssert (delegate.textView.text.contains(" × "))
+//        weak var viewDelgate: ViewDelegate?
+//        guard let delegate = viewDelgate else { return }
+//
+//        operations.addMultiplicationOperator()
+//
+//        XCTAssert (delegate.textView.text.contains(" × "))
     }
 }
 
 extension OperationsTestCase {
     func warningMessage(_ message: String) {
     }
-    
+
     func addResultat(_ resultat: String) {
     }
-    
+
     func addMathematicalOperator(_ mathematicalOperator: String) {
     }
-    
+
     func addCharacterToTextView(_ char: String) {
     }
-    
+
 }
 
 //internal class Operations {

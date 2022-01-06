@@ -63,7 +63,7 @@ class ViewController: UIViewController, ViewDelegate {
         operations.equalButton()
     }
     
-    //MARK: - Functions
+    //MARK: - Functions // retire pour etre punitive
     internal func warningMessage(_ message: String){
         let warningMessage = UIAlertController(title: "Zéro!", message: message, preferredStyle: .alert)
         warningMessage.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
@@ -86,4 +86,6 @@ class ViewController: UIViewController, ViewDelegate {
         textView.text.append(char)
     }
     
+    
+    //une seul methode pour les 3 functions refresh textview with
 }
