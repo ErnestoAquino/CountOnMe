@@ -134,4 +134,8 @@ class Operations {
         delegate.addCharacterToTextView(numberText)
     }
     
+    func testAddPlus() {
+        stringWithData.append(" + ")
+    }
+    
 }

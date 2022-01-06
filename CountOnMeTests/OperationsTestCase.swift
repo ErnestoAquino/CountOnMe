@@ -9,7 +9,7 @@
 import XCTest
 @testable import CountOnMe
 
-class OperationsTestCase: XCTestCase, ViewDelegate{
+class OperationsTestCase: XCTestCase{
     var operations: Operations!
     
     override func setUp() {
@@ -20,15 +20,23 @@ class OperationsTestCase: XCTestCase, ViewDelegate{
    
     
     func testGivenNewMathOperation_WhenPressedAddtionButton_TheOperatorAdditionshouldBeHasAdd(){
-        operations.stringWithData = ""
         
-        operations.addAdditionOperator()
+        operations.testAddPlus()
         
-        XCTAssert ()
+        XCTAssert (operations.stringWithData.contains("+"))
         
     }
     
-    func testGivenNewMathOperation_WhenPressedSubtractionButton_ThenOperatorSubtractionShouldBeAdd() {
+    
+    func testGivenNewInstanceOfOperations_WhenAddSpaceToStringWithData_ThenStringWithDataHaveSpace() {
+        operations.resetStringWithData()
+        
+        XCTAssert(operations.stringWithData.count == 0)
+    }
+    
+    
+    
+//    func testGivenNewMathOperation_WhenPressedSubtractionButton_ThenOperatorSubtractionShouldBeAdd() {
 //        weak var viewDelgate: ViewDelegate?
 //        guard let delegate = viewDelgate else { return }
 //
@@ -37,30 +45,30 @@ class OperationsTestCase: XCTestCase, ViewDelegate{
 //        XCTAssert (delegate.textView.text.contains(" - "))
 //    }
     
-    func testGivenNewMathOperation_WhenPressedMultiplicationButton_TheOperatorMultiplicationShouldBeAdd() {
+//    func testGivenNewMathOperation_WhenPressedMultiplicationButton_TheOperatorMultiplicationShouldBeAdd() {
 //        weak var viewDelgate: ViewDelegate?
 //        guard let delegate = viewDelgate else { return }
 //
 //        operations.addMultiplicationOperator()
 //
 //        XCTAssert (delegate.textView.text.contains(" × "))
-    }
+//    }
 }
 
-extension OperationsTestCase {
-    func warningMessage(_ message: String) {
-    }
-
-    func addResultat(_ resultat: String) {
-    }
-
-    func addMathematicalOperator(_ mathematicalOperator: String) {
-    }
-
-    func addCharacterToTextView(_ char: String) {
-    }
-
-}
+//extension OperationsTestCase {
+//    func warningMessage(_ message: String) {
+//    }
+//
+//    func addResultat(_ resultat: String) {
+//    }
+//
+//    func addMathematicalOperator(_ mathematicalOperator: String) {
+//    }
+//
+//    func addCharacterToTextView(_ char: String) {
+//    }
+//
+//}
 
 //internal class Operations {
 //
