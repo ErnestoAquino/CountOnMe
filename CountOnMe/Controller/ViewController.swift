@@ -60,7 +60,7 @@ class ViewController: UIViewController, ViewDelegate {
     }
 
     @IBAction func tappedEqualButton(_ sender: UIButton) {
-        operations.equalButton()
+        operations.doMathOperation()
     }
     
     //MARK: - Functions // retire pour etre punitive
@@ -82,10 +82,13 @@ class ViewController: UIViewController, ViewDelegate {
         textView.text.append(mathematicalOperator)
     }
     
-    internal func addCharacterToTextView (_ char: String) {
+    internal func addCharacterToTextView(_ char: String) {
         textView.text.append(char)
     }
     
+    internal func refreshTextViewWithValue(_ value: String){
+        textView.text.append(value)
+    }
     
     //une seul methode pour les 3 functions refresh textview with
 }

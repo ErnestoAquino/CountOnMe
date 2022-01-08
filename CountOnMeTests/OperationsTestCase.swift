@@ -9,7 +9,9 @@
 import XCTest
 @testable import CountOnMe
 
-class OperationsTestCase: XCTestCase{
+class OperationsTestCase: XCTestCase, ViewDelegate{
+
+    
     var operations: Operations!
     
     override func setUp() {
@@ -24,7 +26,6 @@ class OperationsTestCase: XCTestCase{
         operations.testAddPlus()
         
         XCTAssert (operations.stringWithData.contains("+"))
-        
     }
     
     
@@ -33,6 +34,8 @@ class OperationsTestCase: XCTestCase{
         
         XCTAssert(operations.stringWithData.count == 0)
     }
+    
+    
     
     
     
@@ -55,20 +58,20 @@ class OperationsTestCase: XCTestCase{
 //    }
 }
 
-//extension OperationsTestCase {
-//    func warningMessage(_ message: String) {
-//    }
-//
-//    func addResultat(_ resultat: String) {
-//    }
-//
-//    func addMathematicalOperator(_ mathematicalOperator: String) {
-//    }
-//
-//    func addCharacterToTextView(_ char: String) {
-//    }
-//
-//}
+extension OperationsTestCase {
+    func warningMessage(_ message: String) {
+    }
+    
+    func addResultat(_ resultat: String) {
+    }
+    
+    func addMathematicalOperator(_ mathematicalOperator: String) {
+    }
+    
+    func addCharacterToTextView(_ char: String) {
+    }
+
+}
 
 //internal class Operations {
 //

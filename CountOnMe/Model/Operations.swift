@@ -43,6 +43,12 @@ class Operations {
   
     
     //MARK: - Functions
+    
+
+    func testAddPlus() {
+        stringWithData.append(" + ")
+    }
+    
     func addAdditionOperator(){
         guard let delegate = viewDelegate else {return}
         if canAddOperator {
@@ -87,7 +93,7 @@ class Operations {
         stringWithData = ""
     }
     
-    func equalButton() {
+    func doMathOperation() {
         guard let delegate = viewDelegate else {return}
         guard expressionIsCorrect else {
             delegate.warningMessage("Entrez une expression correcte !"); return}
@@ -134,8 +140,5 @@ class Operations {
         delegate.addCharacterToTextView(numberText)
     }
     
-    func testAddPlus() {
-        stringWithData.append(" + ")
-    }
     
 }
