@@ -43,7 +43,7 @@ class OperationsTestCase: XCTestCase{
 //        operations.addSubtractionOperator()
 //
 //        XCTAssert (delegate.textView.text.contains(" - "))
-//    }
+//    }∑œ
     
 //    func testGivenNewMathOperation_WhenPressedMultiplicationButton_TheOperatorMultiplicationShouldBeAdd() {
 //        weak var viewDelgate: ViewDelegate?
