@@ -9,7 +9,7 @@
 import XCTest
 @testable import CountOnMe
 
-class OperationsTestCase: XCTestCase, ViewDelegate{
+class OperationsTestCase: XCTestCase{
     
     var mockDelegate: MockDelegate!
     var operations: Operations!
@@ -127,8 +127,8 @@ class OperationsTestCase: XCTestCase, ViewDelegate{
     }
     
     func testGivenDivisionByZero_WhenPressButtoEqual_ThenWarningMessageIsCalled() {
-        let mockDelegate = MockDelegate()
-        operations.viewDelegate = mockDelegate
+//        let mockDelegate = MockDelegate()
+//        operations.viewDelegate = mockDelegate
         operations.receiveNomberToCalculate(buttonEight)
         operations.addOperator(type: .division)
         operations.receiveNomberToCalculate(buttonZero)
@@ -139,23 +139,31 @@ class OperationsTestCase: XCTestCase, ViewDelegate{
     }
     
     func testGivenFourPlus_WhenAddAnotherOperatorPlus_ThenWarningMessageIsCalled() {
-        let mockDelegate = MockDelegate()
-        operations.viewDelegate = mockDelegate
+//        let mockDelegate = MockDelegate()
+//        operations.viewDelegate = mockDelegate
         operations.receiveNomberToCalculate(buttonFour)
         operations.addOperator(type: .addition)
       
         operations.addOperator(type: .addition)
         
         XCTAssert(mockDelegate.warningMessageIsCalled)
-        
     }
+    
+    func testGivenButtonWithoutNumber_WhenPressButtonWithoutNumber_ThenNothingIsAdded() {
+        let buttonWithoutNumber: UIButton = UIButton()
+        buttonWithoutNumber.setTitle("", for: .normal)
+        
+        operations.receiveNomberToCalculate(buttonWithoutNumber)
+        
+        XCTAssert(operations.stringWithData.count == 0)
+    }
+    
+    
+    
+    
+    
         
     
-}
-
-extension OperationsTestCase {
-    func warningMessage(_ message: String) {}
-    func refreshTextViewWithValue(_ value: String) {}
 }
 
 
