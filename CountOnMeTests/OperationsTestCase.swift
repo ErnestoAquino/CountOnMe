@@ -10,85 +10,167 @@ import XCTest
 @testable import CountOnMe
 
 class OperationsTestCase: XCTestCase, ViewDelegate{
-
     
+    var mockDelegate: MockDelegate!
     var operations: Operations!
+    var buttonFour:  UIButton!
+    var buttonEight: UIButton!
+    var buttonZero: UIButton!
     
     override func setUp() {
         super.setUp()
         operations = Operations()
+        mockDelegate = MockDelegate()
+        operations.viewDelegate = mockDelegate
+        buttonFour = UIButton()
+        buttonFour.setTitle("4", for: .normal)
+        buttonEight = UIButton()
+        buttonEight.setTitle("8", for: .normal)
+        buttonZero = UIButton()
+        buttonZero.setTitle("0", for: .normal)
+        
     }
 
-   
     
-    func testGivenNewMathOperation_WhenPressedAddtionButton_TheOperatorAdditionshouldBeHasAdd(){
-        
-        operations.testAddPlus()
-        
+    
+    func testGivenNewMathOperation_WhenPressedAddtionButton_TheOperatorAdditionShouldBeHasAdd(){
+        operations.addOperator(type: .addition)
+
         XCTAssert (operations.stringWithData.contains("+"))
     }
     
+    func testGivenNewMathOperation_WhenPressedSubtractionButton_TheOperatorSubtractionShouldBeHasAdd(){
+        operations.addOperator(type: .subtraction)
+
+        XCTAssert (operations.stringWithData.contains("-"))
+    }
     
-    func testGivenNewInstanceOfOperations_WhenAddSpaceToStringWithData_ThenStringWithDataHaveSpace() {
+    func testGivenNewMathOperation_WhenPressedMultiplicationButton_TheOperatorMultiplicationShouldBeHasAdd(){
+        operations.addOperator(type: .multiplication)
+
+        XCTAssert (operations.stringWithData.contains("×"))
+    }
+    
+    func testGivenNewMathOperation_WhenPressedDivisionButton_TheOperatorDivisionShouldBeHasAdd(){
+        operations.addOperator(type: .division)
+
+        XCTAssert (operations.stringWithData.contains("÷"))
+    }
+    
+    func testGivenStringWithCalcule_WhenPressedAcButton_ThenStringShoulbeEmpty(){
+        operations.receiveNomberToCalculate(buttonFour)
+        operations.addOperator(type: .addition)
+        operations.receiveNomberToCalculate(buttonEight)
+       
         operations.resetStringWithData()
         
         XCTAssert(operations.stringWithData.count == 0)
     }
     
+    func testGivenIncompleteCalcule_WhenPressButtonEqual_ThenCalculeNotDone(){
+        operations.receiveNomberToCalculate(buttonFour)
+        operations.addOperator(type: .addition)
+        
+        operations.doMathOperation()
+        
+        XCTAssertFalse(operations.expressionHaveEnoughElement)
+    }
+    
+    func testGivenFourPlusEight_WhenPressButtonEqual_ThenResultIsEqualTwelve(){
+        operations.receiveNomberToCalculate(buttonFour)
+        operations.addOperator(type: .addition)
+        operations.receiveNomberToCalculate(buttonEight)
+        
+        operations.doMathOperation()
+
+        XCTAssertTrue(operations.stringWithData.contains(" = 12"))
+    }
+    
+    func testGivenEightMinusFour_WhenPressButtonEqual_ThenResultIsEqualFour(){
+        operations.receiveNomberToCalculate(buttonEight)
+        operations.addOperator(type: .subtraction)
+        operations.receiveNomberToCalculate(buttonFour)
+        
+        operations.doMathOperation()
+        
+        XCTAssert(operations.stringWithData.contains(" = 4"))
+    }
+    
+    func testGivenEightTimesFour_WhenPressButtonEqual_ThenResultatIsEqualthirtyTwo(){
+        operations.receiveNomberToCalculate(buttonFour)
+        operations.addOperator(type: .multiplication)
+        operations.receiveNomberToCalculate(buttonEight)
+        
+        operations.doMathOperation()
+        
+        XCTAssert(operations.stringWithData.contains(" = 32"))
+    }
+    
+    func testGivenEightDivideByFour_WhenPressButtonEqual_ThenResultatShouldBeTwo() {
+        operations.receiveNomberToCalculate(buttonEight)
+        operations.addOperator(type: .division)
+        operations.receiveNomberToCalculate(buttonFour)
+        
+        operations.doMathOperation()
+        
+        XCTAssert(operations.stringWithData.contains(" = 2"))
+    }
     
     
+    func testMessage(){
+        let mockDelegate = MockDelegate()
+        operations.viewDelegate = mockDelegate
+        
+        mockDelegate.warningMessage("")
+        
+        XCTAssert(mockDelegate.warningMessageIsCalled)
+    }
     
+    func testGivenDivisionByZero_WhenPressButtoEqual_ThenWarningMessageIsCalled() {
+        let mockDelegate = MockDelegate()
+        operations.viewDelegate = mockDelegate
+        operations.receiveNomberToCalculate(buttonEight)
+        operations.addOperator(type: .division)
+        operations.receiveNomberToCalculate(buttonZero)
+        
+        operations.doMathOperation()
+        
+        XCTAssert(mockDelegate.warningMessageIsCalled)
+    }
     
-//    func testGivenNewMathOperation_WhenPressedSubtractionButton_ThenOperatorSubtractionShouldBeAdd() {
-//        weak var viewDelgate: ViewDelegate?
-//        guard let delegate = viewDelgate else { return }
-//
-//        operations.addSubtractionOperator()
-//
-//        XCTAssert (delegate.textView.text.contains(" - "))
-//    }∑œ
+    func testGivenFourPlus_WhenAddAnotherOperatorPlus_ThenWarningMessageIsCalled() {
+        let mockDelegate = MockDelegate()
+        operations.viewDelegate = mockDelegate
+        operations.receiveNomberToCalculate(buttonFour)
+        operations.addOperator(type: .addition)
+      
+        operations.addOperator(type: .addition)
+        
+        XCTAssert(mockDelegate.warningMessageIsCalled)
+        
+    }
+        
     
-//    func testGivenNewMathOperation_WhenPressedMultiplicationButton_TheOperatorMultiplicationShouldBeAdd() {
-//        weak var viewDelgate: ViewDelegate?
-//        guard let delegate = viewDelgate else { return }
-//
-//        operations.addMultiplicationOperator()
-//
-//        XCTAssert (delegate.textView.text.contains(" × "))
-//    }
 }
 
 extension OperationsTestCase {
-    func warningMessage(_ message: String) {
-    }
-    
-    func addResultat(_ resultat: String) {
-    }
-    
-    func addMathematicalOperator(_ mathematicalOperator: String) {
-    }
-    
-    func addCharacterToTextView(_ char: String) {
-    }
-
+    func warningMessage(_ message: String) {}
+    func refreshTextViewWithValue(_ value: String) {}
 }
 
-//internal class Operations {
-//
-//    weak internal var viewDelegate: ViewDelegate?
-//
-//    internal func addAdditionOperator()
-//
-//    internal func addSubtractionOperator()
-//
-//    internal func addMultiplicationOperator()
-//
-//    internal func addDivisionOperator()
-//
-//    internal func resetStringWithData()
-//
-//    internal func equalButton()
-//
-//    internal func receiveNomberToCalculate(_ sender: UIButton)
-//}
-//carry out a new math operation
+
+// MARK:- MockDelegate
+
+class MockDelegate: ViewDelegate {
+    var warningMessageIsCalled = false
+    var refreshTextViewWhitValueIsCalled = false
+    
+    
+    func warningMessage(_ message: String) {
+        warningMessageIsCalled = true
+    }
+    
+    func refreshTextViewWithValue(_ value: String) {
+        refreshTextViewWhitValueIsCalled = true
+    }
+}

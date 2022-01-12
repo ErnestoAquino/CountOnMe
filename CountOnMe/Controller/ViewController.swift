@@ -44,19 +44,19 @@ class ViewController: UIViewController, ViewDelegate {
     }
     
     @IBAction func tappedAdditionButton(_ sender: UIButton) {
-        operations.addAdditionOperator()
+        operations.addOperator(type: .addition)
     }
     
     @IBAction func tappedSubstractionButton(_ sender: UIButton) {
-        operations.addSubtractionOperator()
+        operations.addOperator(type: .subtraction)
     }
     
     @IBAction func tappedMultiplicationButton(_ sender: UIButton) {
-        operations.addMultiplicationOperator()
+        operations.addOperator(type: .multiplication)
     }
     
     @IBAction func tappedDivisionButton(_ sender: UIButton) {
-        operations.addDivisionOperator()
+        operations.addOperator(type: .division)
     }
 
     @IBAction func tappedEqualButton(_ sender: UIButton) {
@@ -74,21 +74,8 @@ class ViewController: UIViewController, ViewDelegate {
         textView.text = ""
     }
     
-    internal func addResultat(_ resultat: String) {
-        textView.text.append(resultat)
-    }
-    
-    internal func addMathematicalOperator(_ mathematicalOperator: String){
-        textView.text.append(mathematicalOperator)
-    }
-    
-    internal func addCharacterToTextView(_ char: String) {
-        textView.text.append(char)
-    }
     
     internal func refreshTextViewWithValue(_ value: String){
         textView.text.append(value)
     }
-    
-    //une seul methode pour les 3 functions refresh textview with
 }

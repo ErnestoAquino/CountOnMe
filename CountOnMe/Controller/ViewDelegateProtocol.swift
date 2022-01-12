@@ -11,9 +11,6 @@ import UIKit
 
 protocol ViewDelegate: AnyObject {
     func warningMessage(_ message: String)
-    func addResultat(_ resultat: String)
-    func addMathematicalOperator(_ mathematicalOperator: String)
-    func addCharacterToTextView (_ char: String)
+    func refreshTextViewWithValue(_ value: String)
     
-//     var textView: UITextView! { get }
 }

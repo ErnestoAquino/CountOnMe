@@ -15,7 +15,7 @@ class Operations {
     // MARK: - Variables
     weak var viewDelegate: ViewDelegate?
     
-     var stringWithData: String = ""
+    private (set) var stringWithData: String = ""
     
     private var elements: [String] {
         return stringWithData.split(separator: " ").map { "\($0)" }
@@ -30,7 +30,7 @@ class Operations {
             && elements.last != "×" && elements.last != "÷"
     }
     
-    private var expressionHaveEnoughElement: Bool {
+    internal var expressionHaveEnoughElement: Bool {
         return elements.count >= 3
     }
     
@@ -41,64 +41,91 @@ class Operations {
     // MARK: - Constants
     private let message = "Un operateur est déjà mis !"
   
+    enum OperatorType: String {
+        case addition = " + "
+        case subtraction = " - "
+        case multiplication = " × "
+        case division = " ÷ "
+    }
+    
+    
     
     //MARK: - Functions
     
-
-    func testAddPlus() {
-        stringWithData.append(" + ")
-    }
-    
-    func addAdditionOperator(){
-        guard let delegate = viewDelegate else {return}
-        if canAddOperator {
-            delegate.addMathematicalOperator(" + ")
-            stringWithData.append(" + ")
+    func addOperator(type: OperatorType) {
+        guard let delegate = viewDelegate else { return }
+        if canAddOperator{
+            stringWithData.append(type.rawValue)
+            delegate.refreshTextViewWithValue(type.rawValue)
         } else {
             delegate.warningMessage(message)
         }
     }
     
-    func addSubtractionOperator(){
-        guard let delegate = viewDelegate else {return}
-        if canAddOperator {
-            delegate.addMathematicalOperator(" - ")
-            stringWithData.append(" - ")
-        } else {
-            delegate.warningMessage(message)
-        }
-    }
-    
-    func addMultiplicationOperator(){
-        guard let delegate = viewDelegate else {return}
-        if canAddOperator {
-            delegate.addMathematicalOperator(" × ")
-            stringWithData.append(" × ")
-        } else {
-            delegate.warningMessage(message)
-        }
-    }
-    
-    func addDivisionOperator(){
-        guard let delegate = viewDelegate else {return}
-        if canAddOperator {
-            delegate.addMathematicalOperator(" ÷ ")
-            stringWithData.append(" ÷ ")
-        } else {
-            delegate.warningMessage(message)
-        }
-    }
+//    func addOperator(type: OperatorType) {
+//        if canAddOperator{
+//            stringWithData.append(type.rawValue)
+//            viewDelegate?.refreshTextViewWithValue(type.rawValue)
+//        } else {
+//            viewDelegate?.warningMessage(message)
+//        }
+//    }
     
     func resetStringWithData () {
         stringWithData = ""
     }
     
+//    func doMathOperation() {
+//        guard let delegate = viewDelegate else {return}
+//
+//        if !expressionIsCorrect || !expressionHaveEnoughElement {
+//            return
+//        }
+//
+//        var operationsToReduce = elements
+//
+//        // Iterate over operations while an operand still here
+//        while operationsToReduce.count > 1 {
+//            let left = Int(operationsToReduce[0])!
+//            let operand = operationsToReduce[1]
+//            let right = Int(operationsToReduce[2])!
+//
+//            if operand == "÷" && right == 0 {
+//                delegate.warningMessage("You cannot divide by 0")
+//                return
+//            }
+//
+//            let result: Int
+//            switch operand {
+//            case "+": result = left + right
+//            case "-": result = left - right
+//            case "÷": result = left / right
+//            case "×": result = left * right
+//            default: fatalError("Unknown operator !")
+//            }
+//
+//            operationsToReduce = Array(operationsToReduce.dropFirst(3))
+//            operationsToReduce.insert("\(result)", at: 0)
+//        }
+//        stringWithData.append(" = \(operationsToReduce.first!)")
+//        delegate.refreshTextViewWithValue(" = \(operationsToReduce.first!)")
+//    }
+    
+//    func receiveNomberToCalculate (_ sender: UIButton){
+//        guard let numberText = sender.title(for: .normal) else {return}
+//        guard let delegate = viewDelegate else {return}
+//
+//        if testHaveResulta {
+//            stringWithData = ""
+//            delegate.refreshTextViewWithValue("")
+//        }
+//        stringWithData.append(numberText)
+//        delegate.refreshTextViewWithValue(numberText)
+//    }
     func doMathOperation() {
-        guard let delegate = viewDelegate else {return}
-        guard expressionIsCorrect else {
-            delegate.warningMessage("Entrez une expression correcte !"); return}
-        guard expressionHaveEnoughElement else {
-            delegate.warningMessage("Démarrez un nuveau calcul !"); return}
+        if !expressionIsCorrect || !expressionHaveEnoughElement {
+            return
+        }
         
         var operationsToReduce = elements
         
@@ -109,7 +136,7 @@ class Operations {
             let right = Int(operationsToReduce[2])!
             
             if operand == "÷" && right == 0 {
-                delegate.warningMessage("You cannot divide by 0")
+                viewDelegate?.warningMessage("You cannot divide by 0")
                 return
             }
             
@@ -125,20 +152,18 @@ class Operations {
             operationsToReduce = Array(operationsToReduce.dropFirst(3))
             operationsToReduce.insert("\(result)", at: 0)
         }
-        delegate.addResultat(" = \(operationsToReduce.first!)")
+        stringWithData.append(" = \(operationsToReduce.first!)")
+        viewDelegate?.refreshTextViewWithValue(" = \(operationsToReduce.first!)")
     }
     
     func receiveNomberToCalculate (_ sender: UIButton){
         guard let numberText = sender.title(for: .normal) else {return}
-        guard let delegate = viewDelegate else {return}
         
         if testHaveResulta {
             stringWithData = ""
-            delegate.addResultat("")
+            viewDelegate?.refreshTextViewWithValue("")
         }
         stringWithData.append(numberText)
-        delegate.addCharacterToTextView(numberText)
+        viewDelegate?.refreshTextViewWithValue(numberText)
     }
-    
-    
 }
