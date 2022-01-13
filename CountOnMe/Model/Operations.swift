@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import UIKit
+
 
 
 class Operations {
@@ -96,7 +96,7 @@ class Operations {
             case "-": result = left - right
             case "÷": result = left / right
             case "×": result = left * right
-//            default: fatalError("Unknown operator !")
+//            default: fatalError("Unknown operator !") -> ALerte
             default: return
             }
             
@@ -107,6 +107,7 @@ class Operations {
         viewDelegate?.refreshTextViewWithValue(" = \(operationsToReduce.first!)")
     }
     
+//    -> To controller pas uikit
     func receiveNomberToCalculate (_ sender: UIButton){
         guard let numberText = sender.title(for: .normal) else {
             viewDelegate?.warningMessage("This button has not number!")

@@ -158,9 +158,9 @@ class OperationsTestCase: XCTestCase{
         XCTAssertTrue(mockDelegate.resetTextviewTextIsCalled)
     }
     
-    
-    
-    
+    func testTest(){
+        
+    }
     
         
     

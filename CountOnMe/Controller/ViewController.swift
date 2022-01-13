@@ -30,6 +30,7 @@ class ViewController: UIViewController, ViewDelegate {
         operatorsButtons.forEach{
             $0.round()
         }
+        numberButtons[0].tag = 1
     }
     
     //MARK: - View actions
