@@ -15,16 +15,15 @@ class Operations {
     // MARK: - Variables
     weak var viewDelegate: ViewDelegate?
     
+    private var newCalcule: Bool {
+        return stringWithData.contains("=")
+    }
     private (set) var stringWithData: String = ""
     
     private var elements: [String] {
         return stringWithData.split(separator: " ").map { "\($0)" }
     }
     
-    private var testHaveResulta: Bool {
-        return stringWithData.firstIndex(of: "=") != nil
-    }
-
     private var canAddOperator: Bool {
         return elements.last != "+" && elements.last != "-"
             && elements.last != "×" && elements.last != "÷"
@@ -52,76 +51,27 @@ class Operations {
     
     //MARK: - Functions
     
-    func addOperator(type: OperatorType) {
-        guard let delegate = viewDelegate else { return }
-        if canAddOperator{
-            stringWithData.append(type.rawValue)
-            delegate.refreshTextViewWithValue(type.rawValue)
-        } else {
-            delegate.warningMessage(message)
-        }
-    }
-    
 //    func addOperator(type: OperatorType) {
+//        guard let delegate = viewDelegate else { return }
 //        if canAddOperator{
 //            stringWithData.append(type.rawValue)
-//            viewDelegate?.refreshTextViewWithValue(type.rawValue)
+//            delegate.refreshTextViewWithValue(type.rawValue)
 //        } else {
-//            viewDelegate?.warningMessage(message)
+//            delegate.warningMessage(message)
 //        }
 //    }
+    
+    func addOperator(type: OperatorType) {
+        if canAddOperator{
+            stringWithData.append(type.rawValue)
+            viewDelegate?.refreshTextViewWithValue(type.rawValue)
+        }
+    }
     
     func resetStringWithData () {
         stringWithData = ""
     }
     
-//    func doMathOperation() {
-//        guard let delegate = viewDelegate else {return}
-//
-//        if !expressionIsCorrect || !expressionHaveEnoughElement {
-//            return
-//        }
-//
-//        var operationsToReduce = elements
-//
-//        // Iterate over operations while an operand still here
-//        while operationsToReduce.count > 1 {
-//            let left = Int(operationsToReduce[0])!
-//            let operand = operationsToReduce[1]
-//            let right = Int(operationsToReduce[2])!
-//
-//            if operand == "÷" && right == 0 {
-//                delegate.warningMessage("You cannot divide by 0")
-//                return
-//            }
-//
-//            let result: Int
-//            switch operand {
-//            case "+": result = left + right
-//            case "-": result = left - right
-//            case "÷": result = left / right
-//            case "×": result = left * right
-//            default: fatalError("Unknown operator !")
-//            }
-//
-//            operationsToReduce = Array(operationsToReduce.dropFirst(3))
-//            operationsToReduce.insert("\(result)", at: 0)
-//        }
-//        stringWithData.append(" = \(operationsToReduce.first!)")
-//        delegate.refreshTextViewWithValue(" = \(operationsToReduce.first!)")
-//    }
-    
-//    func receiveNomberToCalculate (_ sender: UIButton){
-//        guard let numberText = sender.title(for: .normal) else {return}
-//        guard let delegate = viewDelegate else {return}
-//
-//        if testHaveResulta {
-//            stringWithData = ""
-//            delegate.refreshTextViewWithValue("")
-//        }
-//        stringWithData.append(numberText)
-//        delegate.refreshTextViewWithValue(numberText)
-//    }
     func doMathOperation() {
         if !expressionIsCorrect || !expressionHaveEnoughElement {
             return
@@ -131,22 +81,23 @@ class Operations {
         
         // Iterate over operations while an operand still here
         while operationsToReduce.count > 1 {
-            let left = Int(operationsToReduce[0])!
+            let left = Double(operationsToReduce[0])!
             let operand = operationsToReduce[1]
-            let right = Int(operationsToReduce[2])!
+            let right = Double(operationsToReduce[2])!
             
             if operand == "÷" && right == 0 {
                 viewDelegate?.warningMessage("You cannot divide by 0")
                 return
             }
             
-            let result: Int
+            let result: Double
             switch operand {
             case "+": result = left + right
             case "-": result = left - right
             case "÷": result = left / right
             case "×": result = left * right
-            default: fatalError("Unknown operator !")
+//            default: fatalError("Unknown operator !")
+            default: return
             }
             
             operationsToReduce = Array(operationsToReduce.dropFirst(3))
@@ -157,11 +108,13 @@ class Operations {
     }
     
     func receiveNomberToCalculate (_ sender: UIButton){
-        guard let numberText = sender.title(for: .normal) else {return}
-        
-        if testHaveResulta {
-            stringWithData = ""
-            viewDelegate?.refreshTextViewWithValue("")
+        guard let numberText = sender.title(for: .normal) else {
+            viewDelegate?.warningMessage("This button has not number!")
+            return
+        }
+        if newCalcule {
+            resetStringWithData()
+            viewDelegate?.resetTextviewText()
         }
         stringWithData.append(numberText)
         viewDelegate?.refreshTextViewWithValue(numberText)

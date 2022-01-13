@@ -12,5 +12,5 @@ import UIKit
 protocol ViewDelegate: AnyObject {
     func warningMessage(_ message: String)
     func refreshTextViewWithValue(_ value: String)
-    
+    func resetTextviewText()
 }
