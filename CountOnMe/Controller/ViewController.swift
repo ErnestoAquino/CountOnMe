@@ -36,7 +36,7 @@ class ViewController: UIViewController, ViewDelegate {
     //MARK: - View actions
     
     @IBAction func tappedNumberButton(_ sender: UIButton) {
-        operations.receiveNomberToCalculate(sender)
+        pressNumberButton(sender)
     }
     
     @IBAction func tappedACButton(_ sender: UIButton) {
@@ -78,5 +78,13 @@ class ViewController: UIViewController, ViewDelegate {
     
     internal func refreshTextViewWithValue(_ value: String){
         textView.text.append(value)
+    }
+    
+    internal func pressNumberButton(_ sender: UIButton) {
+        guard let numberText = sender.title(for: .normal) else {
+            warningMessage("This button has not number")
+            return
+        }
+        operations.receiveNumberToCalculate(numberText)
     }
 }

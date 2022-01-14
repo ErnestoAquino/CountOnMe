@@ -50,17 +50,7 @@ class Operations {
     
     
     //MARK: - Functions
-    
-//    func addOperator(type: OperatorType) {
-//        guard let delegate = viewDelegate else { return }
-//        if canAddOperator{
-//            stringWithData.append(type.rawValue)
-//            delegate.refreshTextViewWithValue(type.rawValue)
-//        } else {
-//            delegate.warningMessage(message)
-//        }
-//    }
-    
+
     func addOperator(type: OperatorType) {
         if canAddOperator{
             stringWithData.append(type.rawValue)
@@ -108,16 +98,25 @@ class Operations {
     }
     
 //    -> To controller pas uikit
-    func receiveNomberToCalculate (_ sender: UIButton){
-        guard let numberText = sender.title(for: .normal) else {
-            viewDelegate?.warningMessage("This button has not number!")
-            return
-        }
+//    func receiveNomberToCalculate (_ sender: UIButton){
+//        guard let numberText = sender.title(for: .normal) else {
+//            viewDelegate?.warningMessage("This button has not number!")
+//            return
+//        }
+//        if newCalcule {
+//            resetStringWithData()
+//            viewDelegate?.resetTextviewText()
+//        }
+//        stringWithData.append(numberText)
+//        viewDelegate?.refreshTextViewWithValue(numberText)
+//    }
+    
+    func receiveNumberToCalculate (_ number: String) {
         if newCalcule {
             resetStringWithData()
             viewDelegate?.resetTextviewText()
         }
-        stringWithData.append(numberText)
-        viewDelegate?.refreshTextViewWithValue(numberText)
+        stringWithData.append(number)
+        viewDelegate?.refreshTextViewWithValue(number)
     }
 }
