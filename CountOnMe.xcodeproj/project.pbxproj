@@ -13,7 +13,9 @@
 		1FA43BDA224E569A00F565CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FA43BD9224E569A00F565CB /* Assets.xcassets */; };
 		1FA43BDD224E569A00F565CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FA43BDB224E569A00F565CB /* LaunchScreen.storyboard */; };
 		1FA43BF3224E569A00F565CB /* CountOnMeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA43BF2224E569A00F565CB /* CountOnMeUITests.swift */; };
+		9409F1752792E13B00868544 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9409F1742792E13B00868544 /* DoubleExtension.swift */; };
 		945030F92775F9EF0089B67E /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945030F82775F9EF0089B67E /* UIButtonExtension.swift */; };
+		9456079C2792184D00093A3A /* MockDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9456079B2792184D00093A3A /* MockDelegate.swift */; };
 		946DE838277371E50023597E /* Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946DE837277371E50023597E /* Operations.swift */; };
 		94E5AD0E277BA4C800EB4B38 /* ViewDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E5AD0D277BA4C800EB4B38 /* ViewDelegateProtocol.swift */; };
 		94E5AD10277BB37F00EB4B38 /* OperationsTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E5AD0F277BB37F00EB4B38 /* OperationsTestCase.swift */; };
@@ -49,7 +51,9 @@
 		1FA43BEE224E569A00F565CB /* CountOnMeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountOnMeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FA43BF2224E569A00F565CB /* CountOnMeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountOnMeUITests.swift; sourceTree = "<group>"; };
 		1FA43BF4224E569A00F565CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9409F1742792E13B00868544 /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		945030F82775F9EF0089B67E /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
+		9456079B2792184D00093A3A /* MockDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDelegate.swift; sourceTree = "<group>"; };
 		946DE837277371E50023597E /* Operations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operations.swift; sourceTree = "<group>"; };
 		94E5AD0D277BA4C800EB4B38 /* ViewDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDelegateProtocol.swift; sourceTree = "<group>"; };
 		94E5AD0F277BB37F00EB4B38 /* OperationsTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationsTestCase.swift; sourceTree = "<group>"; };
@@ -117,6 +121,7 @@
 			children = (
 				1FA43BE9224E569A00F565CB /* Info.plist */,
 				94E5AD0F277BB37F00EB4B38 /* OperationsTestCase.swift */,
+				9456079B2792184D00093A3A /* MockDelegate.swift */,
 			);
 			path = CountOnMeTests;
 			sourceTree = "<group>";
@@ -134,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				945030F82775F9EF0089B67E /* UIButtonExtension.swift */,
+				9409F1742792E13B00868544 /* DoubleExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -306,6 +312,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9409F1752792E13B00868544 /* DoubleExtension.swift in Sources */,
 				946DE838277371E50023597E /* Operations.swift in Sources */,
 				945030F92775F9EF0089B67E /* UIButtonExtension.swift in Sources */,
 				1FA43BD5224E569900F565CB /* ViewController.swift in Sources */,
@@ -318,6 +325,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9456079C2792184D00093A3A /* MockDelegate.swift in Sources */,
 				94E5AD10277BB37F00EB4B38 /* OperationsTestCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

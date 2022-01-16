@@ -40,7 +40,6 @@ class ViewController: UIViewController, ViewDelegate {
     }
     
     @IBAction func tappedACButton(_ sender: UIButton) {
-        resetTextviewText()
         operations.resetStringWithData()
     }
     
