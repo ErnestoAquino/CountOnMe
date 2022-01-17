@@ -28,6 +28,7 @@ class Operations {
     private var canAddOperator: Bool {
         return elements.last != "+" && elements.last != "-"
             && elements.last != "×" && elements.last != "÷"
+            && stringWithData.count != 0
     }
     
     internal var expressionHaveEnoughElement: Bool {
@@ -63,32 +64,75 @@ class Operations {
         
         var operationsToReduce = elements
         
-        // Iterate over operations while an operand still here
-        while operationsToReduce.count > 1 {
-            let left = Int (operationsToReduce[0])!
-            let operand = operationsToReduce[1]
-            let right = Int (operationsToReduce[2])!
-            
-            if operand == "÷" && right == 0 {
+        while operationsToReduce.contains("×") || operationsToReduce.contains("÷"){
+            guard let index = operationsToReduce.firstIndex(where: {$0 == "×" || $0 == "÷"}) else {return}
+            if operationsToReduce[index] == "÷" && operationsToReduce[index + 1] == "0"{
                 viewDelegate?.warningMessage("You cannot divide by 0")
                 resetStringWithData()
                 return
             }
+            let resultPriorityCalculation = calculate(operationsToReduce[index - 1], operationsToReduce[index], operationsToReduce[index + 1])
+            operationsToReduce[index] = "\(resultPriorityCalculation)"
+            operationsToReduce.remove(at: index + 1)
+            operationsToReduce.remove(at: index - 1)
+        }
+        
+        // Iterate over operations while an operand still here
+        while operationsToReduce.count > 1 {
+//            guard let left = Int(operationsToReduce[0]) else {return}
+//            let operand = operationsToReduce[1]
+//            guard let right = Int(operationsToReduce[2]) else {return}
+//
+//            if operationsToReduce[1] == "÷" && operationsToReduce[2] == "0" {
+//                print("Enter aqui")
+//                viewDelegate?.warningMessage("You cannot divide by 0")
+//                resetStringWithData()
+//                return
+//            }
+
+//            var result: Double
+//            switch operand {
+//            case "+": result = Double(left) + Double(right)
+//            case "-": result = Double(left) - Double(right)
+//            case "÷": result = division(divisor: left, quotient: right)
+//            case "×": result = Double(left) * Double(right)
+//            default: return
+//            }
+            let result =  calculate(operationsToReduce[0], operationsToReduce[1], operationsToReduce[2])
             
-            var result: Double
-            switch operand {
-            case "+": result = Double(left) + Double(right)
-            case "-": result = Double(left) - Double(right)
-            case "÷": result = division(divisor: left, quotient: right)
-            case "×": result = Double(left) * Double(right)
-            default: return
-            }
-            
+//            let resultString = resultatWithoutDecimal(result)
             operationsToReduce = Array(operationsToReduce.dropFirst(3))
+//            if operand != "÷" {
+//                operationsToReduce.insert("\(resultString)", at: 0)
+//            } else {
+//                operationsToReduce.insert("\(result)", at: 0)
+//            }
             operationsToReduce.insert("\(result)", at: 0)
         }
         refreshCurrentStringWithData(" = \(operationsToReduce.first!)")
     }
+    
+    //MARK:- Testint Space
+
+    private func calculate(_ left: String, _ operand: String, _ right: String) -> Double {
+           guard let left = Double(left) else { return Double() }
+           let operand = operand
+           guard let right = Double(right) else { return Double() }
+        
+        var resultado: Double
+           switch operand {
+           case "+": resultado = Double(left) + Double(right)
+           case "-": resultado = Double(left) - Double(right)
+           case "÷": resultado = (left / right).roundedOneDecimal()
+           case "×": resultado = Double(left) * Double(right)
+           default: return Double()
+           }
+        return resultado
+       }
+
+    
+    //MARK:- Testing Space End
+    
     
     func receiveNumberToCalculate (_ number: String) {
         if newCalcule {
@@ -117,23 +161,51 @@ class Operations {
         dividend =  Double(divisor) / Double(quotient)
         return dividend.roundedOneDecimal()
     }
-    
-    
-//    func division(dato1: Int, dato2: Int) -> Double {
-//        var resultado: Double
-//        resultado = Double(dato1) / Double(dato2)
-//        return resultado.roundedOneDecimal()
-//    }
-//
-//
-//    extension Double {
-//        func roundedOneDecimal() -> Double {
-//            return ((self * 10).rounded() / 10)
-//        }
-//    }
-//
-//    var resultaOfDivision = 0.0
-//
-//    resultaOfDivision = division(dato1: 9, dato2: 3)
-    
 }
+
+
+
+
+//import UIKit
+//
+//var greeting = "Hello, playground"
+//
+//
+//var left = "q"
+//var rigth = "3"
+//
+//var resultado = 0.0
+//
+//
+//func sumatoriom(lesft: String, right: String) -> Double {
+//    guard let leftInt = Double(left) else { return Double() }
+//    guard let rigthInt = Double(rigth) else { return Double()}
+//    
+//    let resultado = leftInt + rigthInt
+//    return resultado
+//}
+//
+//
+//resultado = sumatoriom(lesft: left, right: rigth)
+//
+//
+//var pruebaDouble = 13.23
+//
+//print(String(format: "%.0f", pruebaDouble))
+//
+//var pruebaRedondeado = pruebaDouble.rounded()
+//
+//
+//if pruebaDouble == Double(Int(pruebaDouble)) {
+//// The value doesn't have decimal part. ex: 6.0
+//    print ("No tiene ceros")
+//    print(pruebaDouble)
+//    print(Int(pruebaDouble))
+//} else {
+////  The value has decimal part. ex: 6.3
+//    print("Tiene otro valor")
+//    print(pruebaDouble)
+//    print(Int(pruebaDouble))
+//    print(Double(Int(pruebaDouble)))
+//}
+//

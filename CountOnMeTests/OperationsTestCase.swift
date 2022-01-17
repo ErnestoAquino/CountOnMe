@@ -14,15 +14,12 @@ class OperationsTestCase: XCTestCase{
     var mockDelegate: MockDelegate!
     var operations: Operations!
 
-    
     override func setUp() {
         super.setUp()
         operations = Operations()
         mockDelegate = MockDelegate()
         operations.viewDelegate = mockDelegate
     }
-
-    
     
     func testGivenNewMathOperation_WhenPressedAddtionButton_TheOperatorAdditionShouldBeHasAdd(){
         operations.addOperator(type: .addition)
@@ -138,3 +135,15 @@ class OperationsTestCase: XCTestCase{
         XCTAssertTrue(mockDelegate.resetTextviewTextIsCalled)
     }
 }
+
+
+//while finalResult.contains("x") || finalResult.contains("÷") {
+//           guard let index = finalResult.firstIndex(where: { $0 == "x" || $0 == "÷" }) else { return }
+//
+//           let result = calculate(finalResult[index - 1], finalResult[index], finalResult[index + 1])
+//
+//           finalResult[index] = "\(result.roundedWithTowDecimal())"
+//           finalResult.remove(at: index + 1)
+//           finalResult.remove(at: index - 1)
+//       }
+
