@@ -100,6 +100,12 @@ class Operations {
 //            }
             let result =  calculate(operationsToReduce[0], operationsToReduce[1], operationsToReduce[2])
             
+            if result == Double(Int(result)){
+                let resultHowString = resultatWithoutDecimal(result)
+                operationsToReduce.insert("\(resultHowString)", at: 0)
+            } else {
+                operationsToReduce.insert("\(result)", at: 0)
+            }
 //            let resultString = resultatWithoutDecimal(result)
             operationsToReduce = Array(operationsToReduce.dropFirst(3))
 //            if operand != "÷" {
@@ -107,7 +113,7 @@ class Operations {
 //            } else {
 //                operationsToReduce.insert("\(result)", at: 0)
 //            }
-            operationsToReduce.insert("\(result)", at: 0)
+//            operationsToReduce.insert("\(result)", at: 0)
         }
         refreshCurrentStringWithData(" = \(operationsToReduce.first!)")
     }
