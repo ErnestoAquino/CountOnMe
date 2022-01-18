@@ -21,28 +21,28 @@ class OperationsTestCase: XCTestCase{
         operations.viewDelegate = mockDelegate
     }
     
-    func testGivenNewMathOperation_WhenPressedAddtionButton_TheOperatorAdditionShouldBeHasAdd(){
+    func testGivenNewMathOperation_WhenPressedAddtionButton_TheOperatorAdditionShouldNotBeAdded(){
         operations.addOperator(type: .addition)
 
-        XCTAssertTrue (operations.stringWithData.contains("+"))
+        XCTAssertFalse(operations.stringWithData.contains("+"))
     }
     
     func testGivenNewMathOperation_WhenPressedSubtractionButton_TheOperatorSubtractionShouldBeHasAdd(){
         operations.addOperator(type: .subtraction)
 
-        XCTAssertTrue (operations.stringWithData.contains("-"))
+        XCTAssertTrue(operations.stringWithData.contains("-"))
     }
     
-    func testGivenNewMathOperation_WhenPressedMultiplicationButton_TheOperatorMultiplicationShouldBeHasAdd(){
+    func testGivenNewMathOperation_WhenPressedMultiplicationButton_TheOperatorMultiplicationShouldNotBeAdded(){
         operations.addOperator(type: .multiplication)
 
-        XCTAssertTrue (operations.stringWithData.contains("×"))
+        XCTAssertFalse(operations.stringWithData.contains("×"))
     }
     
-    func testGivenNewMathOperation_WhenPressedDivisionButton_TheOperatorDivisionShouldBeHasAdd(){
+    func testGivenNewMathOperation_WhenPressedDivisionButton_TheOperatorDivisionShouldNotBeAdded(){
         operations.addOperator(type: .division)
 
-        XCTAssertTrue (operations.stringWithData.contains("÷"))
+        XCTAssertFalse(operations.stringWithData.contains("÷"))
     }
     
     func testGivenStringWithCalcule_WhenPressedAcButton_ThenStringShoulbeEmpty(){
@@ -124,7 +124,7 @@ class OperationsTestCase: XCTestCase{
         XCTAssertTrue(mockDelegate.warningMessageIsCalled)
     }
     
-    func testGivenAnCalculationHasFinished_GivenPressButtonWithNumber_TheNewCalculationBegins() {
+    func testGivenAnCalculationHasFinished_WhePressButtonWithNumber_ThenTextviewIsReset() {
         operations.receiveNumberToCalculate("4")
         operations.addOperator(type: .addition)
         operations.receiveNumberToCalculate("8")
@@ -134,16 +134,52 @@ class OperationsTestCase: XCTestCase{
         
         XCTAssertTrue(mockDelegate.resetTextviewTextIsCalled)
     }
+    
+    func testGivenMinusTenPlusFive_WhenPressButtonEqual_ThenResultShouldBeMinusFive() {
+        operations.addOperator(type: .subtraction)
+        operations.receiveNumberToCalculate("10")
+        operations.addOperator(type: .addition)
+        operations.receiveNumberToCalculate("5")
+        
+        operations.doMathOperation()
+        
+        XCTAssertTrue(operations.stringWithData.contains(" = -5"))
+    }
+    
+    func testGivenTwoPlusTwoTimesThree_WhenDoMathOperation_ThenResultShouldBeEight() {
+        operations.receiveNumberToCalculate("2")
+        operations.addOperator(type: .addition)
+        operations.receiveNumberToCalculate("2")
+        operations.addOperator(type: .multiplication)
+        operations.receiveNumberToCalculate("3")
+        
+        operations.doMathOperation()
+        
+        XCTAssertTrue(operations.stringWithData.contains(" = 8"))
+    }
+    
+    func testGivenThenDividedByThree_WhenDoMathOperation_TheResultShoulBeThreePointThree() {
+        operations.receiveNumberToCalculate("10")
+        operations.addOperator(type: .division)
+        operations.receiveNumberToCalculate("3")
+        
+        operations.doMathOperation()
+        
+        XCTAssertTrue(operations.stringWithData.contains("= 3.3"))
+    }
+    
+    func testGivenThreePlusThreeTimesTreeDivededByTwo_WhenDoMathOperation_ThenResultShouldBeSevenPointFive () {
+        operations.receiveNumberToCalculate("3")
+        operations.addOperator(type: .addition)
+        operations.receiveNumberToCalculate("3")
+        operations.addOperator(type: .multiplication)
+        operations.receiveNumberToCalculate("3")
+        operations.addOperator(type: .division)
+        operations.receiveNumberToCalculate("2")
+        
+        operations.doMathOperation()
+        
+        XCTAssert(operations.stringWithData.contains(" = 7.5"))
+    }
+    
 }
-
-
-//while finalResult.contains("x") || finalResult.contains("÷") {
-//           guard let index = finalResult.firstIndex(where: { $0 == "x" || $0 == "÷" }) else { return }
-//
-//           let result = calculate(finalResult[index - 1], finalResult[index], finalResult[index + 1])
-//
-//           finalResult[index] = "\(result.roundedWithTowDecimal())"
-//           finalResult.remove(at: index + 1)
-//           finalResult.remove(at: index - 1)
-//       }
-
