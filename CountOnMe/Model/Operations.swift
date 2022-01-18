@@ -53,7 +53,7 @@ class Operations {
     
     //MARK: - Functions
 
-    func addOperator(type: OperatorType) {
+    internal func addOperator(type: OperatorType) {
         if stringWithData == "" && type == .subtraction {
             refreshCurrentStringWithData(type.rawValue)
         }
@@ -62,7 +62,7 @@ class Operations {
         }
     }
     
-    func doMathOperation() {
+    internal func doMathOperation() {
         if !expressionIsCorrect || !expressionHaveEnoughElement || newCalcule {
             return
         }
@@ -121,11 +121,11 @@ class Operations {
            switch operand {
            case "+": resultado = left + right
            case "-": resultado = left - right
-           case "÷": resultado = (left / right).roundedOneDecimal()
+           case "÷": resultado = left / right
            case "×": resultado = left * right
            default: return Double()
            }
-        return resultado
+        return resultado.roundedOneDecimal()
     }
     
     
