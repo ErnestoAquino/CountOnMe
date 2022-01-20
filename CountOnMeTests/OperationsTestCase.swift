@@ -55,15 +55,15 @@ class OperationsTestCase: XCTestCase{
         XCTAssertTrue (operations.stringWithData.count == 0)
     }
     
-    func testGivenIncompleteCalcule_WhenPressButtonEqual_ThenCalculeNotDone(){
+    func testGivenIncompleteCalcule_WhenPressButtonEqual_ThenCalculationNotHaveEnoughtElement(){
         operations.receiveNumberToCalculate("4")
         operations.addOperator(type: .addition)
-        
+
         operations.doMathOperation()
-        
+
         XCTAssertFalse(operations.expressionHaveEnoughElement)
     }
-    
+
     func testGivenFourPlusEight_WhenPressButtonEqual_ThenResultIsEqualTwelve(){
         operations.receiveNumberToCalculate("4")
         operations.addOperator(type: .addition)
@@ -104,15 +104,6 @@ class OperationsTestCase: XCTestCase{
         XCTAssertTrue(operations.stringWithData.contains(" = 2"))
     }
     
-    
-    func testMessage(){
-        let mockDelegate = MockDelegate()
-        operations.viewDelegate = mockDelegate
-        
-        mockDelegate.warningMessage("")
-        
-        XCTAssert(mockDelegate.warningMessageIsCalled)
-    }
     
     func testGivenDivisionByZero_WhenPressButtoEqual_ThenWarningMessageIsCalled() {
         operations.receiveNumberToCalculate("8")

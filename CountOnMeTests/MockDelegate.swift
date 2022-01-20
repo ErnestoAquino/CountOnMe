@@ -9,8 +9,8 @@
 import Foundation
 @testable import CountOnMe
 
+//Mock Delegate created for testing.
 class MockDelegate: ViewDelegate {
-    
     
     var warningMessageIsCalled = false
     var refreshTextViewWhitValueIsCalled = false

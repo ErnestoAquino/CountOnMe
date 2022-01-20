@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import UIKit
 
+//Protocol for Delegate Pattern.
 protocol ViewDelegate: AnyObject {
     func warningMessage(_ message: String)
     func refreshTextViewWithValue(_ value: String)

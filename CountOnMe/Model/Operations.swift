@@ -5,23 +5,29 @@
 //  Created by Ernesto Elias on 22/12/2021.
 //  Copyright © 2021 Vincent Saluzzo. All rights reserved.
 //
+// Class to solve mathematical operations.
 
 import Foundation
 
-
-
 class Operations {
+    
+    // MARK: - Constants
+    enum OperatorType: String {
+        case addition = " + "
+        case subtraction = " - "
+        case multiplication = " × "
+        case division = " ÷ "
+    }
     
     // MARK: - Variables
     weak var viewDelegate: ViewDelegate?
-    
     private var negativeOperation = false
-    
+    // This property stores the data to perform the mathematical operation
+    private (set) var stringWithData: String = ""
+   
     private var newCalcule: Bool {
         return stringWithData.contains("=")
     }
-    
-    private (set) var stringWithData: String = ""
     
     private var elements: [String] {
         return stringWithData.split(separator: " ").map { "\($0)" }
@@ -33,23 +39,15 @@ class Operations {
             && stringWithData.count != 0
     }
     
-    internal var expressionHaveEnoughElement: Bool {
-        return elements.count >= 3
-    }
-    
     private var expressionIsCorrect: Bool {
         return elements.last != "+" && elements.last != "-"
             && elements.last != "×" && elements.last != "÷"
     }
-    // MARK: - Constants
-    private let message = "Un operateur est déjà mis !"
-  
-    enum OperatorType: String {
-        case addition = " + "
-        case subtraction = " - "
-        case multiplication = " × "
-        case division = " ÷ "
+    
+    internal var expressionHaveEnoughElement: Bool {
+        return elements.count >= 3
     }
+   
     
     //MARK: - Functions
 
@@ -62,6 +60,19 @@ class Operations {
         }
     }
     
+    internal func receiveNumberToCalculate (_ number: String) {
+        if newCalcule {
+            resetStringWithData()
+        }
+       refreshCurrentStringWithData(number)
+    }
+    
+   /// Does the arithmetic operation(s) to obtain the final result.
+    ///*  Check if the conditions are valid (expressionIsCorrect, expressionHaveEnoughElement , newCalcule)
+    ///* Analyze if the first number is negative.
+    ///* It makes the priority operations.
+    ///* Does the remaining Operations.
+    ///* Get the result.
     internal func doMathOperation() {
         if !expressionIsCorrect || !expressionHaveEnoughElement || newCalcule {
             return
@@ -69,11 +80,12 @@ class Operations {
     
         var operationsToReduce = elements
         
+        //Check if the calculation is negative and modify the property: negativeOperation if it is true
         if operationsToReduce.first == "-" {
             negativeOperation = true
             operationsToReduce.remove(at: 0)
         }
-        
+        // Does the priority arithmetic operations "×" and "÷" if they exist. Call warningMessage if dividing by zero is being attempted.
         while operationsToReduce.contains("×") || operationsToReduce.contains("÷"){
             guard let index = operationsToReduce.firstIndex(where: {$0 == "×" || $0 == "÷"}) else {return}
             if operationsToReduce[index] == "÷" && operationsToReduce[index + 1] == "0"{
@@ -103,9 +115,21 @@ class Operations {
                 operationsToReduce.insert("\(result)", at: 0)
             }
         }
+        
         refreshCurrentStringWithData(" = \(operationsToReduce.first!)")
     }
     
+    internal func resetStringWithData() {
+        stringWithData = ""
+        viewDelegate?.resetTextviewText()
+    }
+    
+    /// Returns the result of the arithmetic operation as a double with a single decimal
+    ///
+    ///- Parameter left:  first argument of arithmetic operation like String
+    ///- Parameter operand: Type of arithmetic operation. Can be "-", "+", "÷", "×".
+    ///- Parameter right: Second argument of the arithmetic operation like String.
+    ///- Returns: Returns the result of the arithmetic operation as a double is a single decimal.
     
     private func calculate(_ left: String, _ operand: String, _ right: String) -> Double {
            guard var left = Double(left) else { return Double() }
@@ -117,23 +141,15 @@ class Operations {
             negativeOperation = false
         }
         
-        var resultado: Double
+        let result: Double
            switch operand {
-           case "+": resultado = left + right
-           case "-": resultado = left - right
-           case "÷": resultado = left / right
-           case "×": resultado = left * right
+           case "+": result = left + right
+           case "-": result = left - right
+           case "÷": result = left / right
+           case "×": result = left * right
            default: return Double()
            }
-        return resultado.roundedOneDecimal()
-    }
-    
-    
-    internal func receiveNumberToCalculate (_ number: String) {
-        if newCalcule {
-            resetStringWithData()
-        }
-       refreshCurrentStringWithData(number)
+        return result.roundedOneDecimal()
     }
     
     private func refreshCurrentStringWithData(_ data: String) {
@@ -141,13 +157,12 @@ class Operations {
         viewDelegate?.refreshTextViewWithValue(data)
     }
     
-    internal func resetStringWithData() {
-        stringWithData = ""
-        viewDelegate?.resetTextviewText()
-    }
+    /// Check if a double number contains important decimals.
+    /// It does a double cast to do the check.
+    /// - Parameter result: Number to check.
+    /// - Returns: Returns true if the number has decimals that are different from zero
     
-    //result contains significant decimals
-  private  func resultContainSignificantDecimals (_ result: Double) -> Bool {
+    private  func resultContainSignificantDecimals (_ result: Double) -> Bool {
         if result == Double(Int(result)){
             return true
         }

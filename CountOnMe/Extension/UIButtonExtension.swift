@@ -8,8 +8,9 @@
 
 import UIKit
 
+// This method applies a slight rounding to the buttons.
+
 extension UIButton {
-    // round edge
     func round(){
         layer.cornerRadius = 10
         clipsToBounds = true

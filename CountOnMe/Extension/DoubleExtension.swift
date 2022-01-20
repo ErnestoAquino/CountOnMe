@@ -8,6 +8,8 @@
 
 import Foundation
 
+// This method rounds a double to a decimal point.
+
 extension Double {
     func roundedOneDecimal() -> Double {
         return ((self * 10).rounded() / 10)

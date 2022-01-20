@@ -15,7 +15,6 @@ class ViewController: UIViewController, ViewDelegate {
     @IBOutlet var operatorsButtons: [UIButton]!
         
     // MARK: - Constants
-    
     let operations = Operations()
     
     // MARK: - Life Cycle
@@ -23,6 +22,7 @@ class ViewController: UIViewController, ViewDelegate {
         super.viewDidLoad()
         operations.viewDelegate = self
         resetTextviewText()
+        
         //UI
         numberButtons.forEach{
             $0.round()
@@ -64,7 +64,8 @@ class ViewController: UIViewController, ViewDelegate {
         operations.doMathOperation()
     }
     
-    //MARK: - Functions // retire pour etre punitive
+    //MARK: - Functions
+    
     internal func warningMessage(_ message: String){
         let warningMessage = UIAlertController(title: "Zéro!", message: message, preferredStyle: .alert)
         warningMessage.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
@@ -79,7 +80,7 @@ class ViewController: UIViewController, ViewDelegate {
         textView.text.append(value)
     }
     
-    internal func pressNumberButton(_ sender: UIButton) {
+    private func pressNumberButton(_ sender: UIButton) {
         guard let numberText = sender.title(for: .normal) else {
             warningMessage("This button has not number")
             return
