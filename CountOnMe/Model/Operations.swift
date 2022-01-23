@@ -117,7 +117,9 @@ class Operations: ViewDelegate {
                 operationsToReduce.insert("\(result)", at: 0)
             }
         }
-        refreshTextViewWithValue(" = \(operationsToReduce.first ?? "error")")
+        
+        guard let finalResultat = operationsToReduce.first else {return}
+        refreshTextViewWithValue(" = \(finalResultat)")
     }
     
     /// Returns the result of the arithmetic operation as a double with a single decimal
