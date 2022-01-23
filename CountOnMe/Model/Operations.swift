@@ -115,8 +115,7 @@ class Operations {
                 operationsToReduce.insert("\(result)", at: 0)
             }
         }
-        
-        refreshCurrentStringWithData(" = \(operationsToReduce.first!)")
+        refreshCurrentStringWithData(" = \(operationsToReduce.first ?? "error")")
     }
     
     internal func resetStringWithData() {
