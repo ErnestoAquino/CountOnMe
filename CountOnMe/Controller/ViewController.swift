@@ -41,7 +41,7 @@ class ViewController: UIViewController, ViewDelegate {
     }
     
     @IBAction func tappedACButton(_ sender: UIButton) {
-        operations.resetStringWithData()
+        operations.resetTextviewText()
     }
     
     @IBAction func tappedAdditionButton(_ sender: UIButton) {
