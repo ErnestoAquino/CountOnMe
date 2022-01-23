@@ -9,7 +9,9 @@
 
 import Foundation
 
-class Operations {
+class Operations: ViewDelegate {
+    
+    
     
     // MARK: - Constants
     enum OperatorType: String {
@@ -53,18 +55,18 @@ class Operations {
 
     internal func addOperator(type: OperatorType) {
         if stringWithData == "" && type == .subtraction {
-            refreshCurrentStringWithData(type.rawValue)
+            refreshTextViewWithValue(type.rawValue)
         }
         if canAddOperator{
-            refreshCurrentStringWithData(type.rawValue)
+            refreshTextViewWithValue(type.rawValue)
         }
     }
     
     internal func receiveNumberToCalculate (_ number: String) {
         if newCalcule {
-            resetStringWithData()
+            resetTextviewText()
         }
-       refreshCurrentStringWithData(number)
+        refreshTextViewWithValue(number)
     }
     
    /// Does the arithmetic operation(s) to obtain the final result.
@@ -89,8 +91,8 @@ class Operations {
         while operationsToReduce.contains("×") || operationsToReduce.contains("÷"){
             guard let index = operationsToReduce.firstIndex(where: {$0 == "×" || $0 == "÷"}) else {return}
             if operationsToReduce[index] == "÷" && operationsToReduce[index + 1] == "0"{
-                viewDelegate?.warningMessage("You cannot divide by 0")
-                resetStringWithData()
+                warningMessage("You cannot divide by 0")
+                resetTextviewText()
                 return
             }
             let resultPriorityCalculation = calculate(operationsToReduce[index - 1], operationsToReduce[index], operationsToReduce[index + 1])
@@ -115,12 +117,7 @@ class Operations {
                 operationsToReduce.insert("\(result)", at: 0)
             }
         }
-        refreshCurrentStringWithData(" = \(operationsToReduce.first ?? "error")")
-    }
-    
-    internal func resetStringWithData() {
-        stringWithData = ""
-        viewDelegate?.resetTextviewText()
+        refreshTextViewWithValue(" = \(operationsToReduce.first ?? "error")")
     }
     
     /// Returns the result of the arithmetic operation as a double with a single decimal
@@ -151,11 +148,6 @@ class Operations {
         return result.roundedOneDecimal()
     }
     
-    private func refreshCurrentStringWithData(_ data: String) {
-        stringWithData.append(data)
-        viewDelegate?.refreshTextViewWithValue(data)
-    }
-    
     /// Check if a double number contains important decimals.
     /// It does a double cast to do the check.
     /// - Parameter result: Number to check.
@@ -167,4 +159,22 @@ class Operations {
         }
         return false
     }
+    
+}
+
+extension Operations {
+    func warningMessage(_ message: String) {
+        viewDelegate?.warningMessage(message)
+    }
+    
+    func refreshTextViewWithValue(_ value: String) {
+        stringWithData.append(value)
+        viewDelegate?.refreshTextViewWithValue(value)
+    }
+    
+    func resetTextviewText() {
+        stringWithData = ""
+        viewDelegate?.resetTextviewText()
+    }
+    
 }
