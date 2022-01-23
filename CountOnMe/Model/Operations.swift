@@ -36,7 +36,7 @@ class Operations {
     private var canAddOperator: Bool {
         return elements.last != "+" && elements.last != "-"
             && elements.last != "×" && elements.last != "÷"
-            && stringWithData.count != 0
+            && stringWithData.count != 0 && !newCalcule
     }
     
     private var expressionIsCorrect: Bool {
