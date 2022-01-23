@@ -50,7 +50,7 @@ class OperationsTestCase: XCTestCase{
         operations.addOperator(type: .addition)
         operations.receiveNumberToCalculate("8")
        
-        operations.resetStringWithData()
+        operations.resetTextviewText()
         
         XCTAssertTrue (operations.stringWithData.count == 0)
     }
